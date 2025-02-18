@@ -16,50 +16,36 @@ void print_args(T first, Args... args) {
     print_args(args...);
 }
 
+#define LOG_DEBUG( ... )
+
+#define LOG_WARN( ... )
+
+#define LOG_ERROR( ... )
+
+#define LOG_INFO( ... )
+
 #ifdef DEBUG
 
 #define LOG_DEBUG( ... ) \
 std::cout << "\033[36m[DEBUG]:\t"; \
 print_args(__VA_ARGS__);
 
-#define LOG_WARN( ... ) \
-std::cout << "\033[31m[WARNING]:\t"; \
-print_args(__VA_ARGS__);
-
-#define LOG_ERROR( ... ) \
-std::cout << "\033[33m[ERROR]:\t"; \
-print_args(__VA_ARGS__);
-
-#define LOG_INFO( ... ) \
-std::cout << "\033[32m[INFO]:\t\t"; \
-print_args(__VA_ARGS__);
+#define DEV
 
 #endif
 
 #ifdef DEV
 
-#define LOG_DEBUG( ... )
-
 #define LOG_WARN( ... ) \
 std::cout << "\033[31m[WARNING]:\t"; \
 print_args(__VA_ARGS__);
 
-#define LOG_ERROR( ... ) \
-std::cout << "\033[33m[ERROR]:\t"; \
-print_args(__VA_ARGS__);
-
-#define LOG_INFO( ... ) \
-std::cout << "\033[32m[INFO]:\t\t"; \
-print_args(__VA_ARGS__);
+#define PROD
 
 #endif
 
 
 #ifdef PROD
-
-#define LOG_DEBUG( ... )
-
-#define LOG_WARN( ... )
 
 #define LOG_ERROR( ... ) \
 std::cout << "\033[33m[ERROR]:\t"; \

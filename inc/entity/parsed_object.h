@@ -16,18 +16,18 @@ class Parsed_Object {
         unsigned long _col;
 
     public:
-        Parsed_Object( unsigned long, unsigned long );
-        virtual ~Parsed_Object();
+        Parsed_Object( const unsigned long &, const unsigned long & ) noexcept;
+        virtual ~Parsed_Object() noexcept = default;
 
     public:
-        unsigned long get_row() const;
-        unsigned long get_col() const;
-        void set_row( const unsigned long & );
-        void set_col( const unsigned long & );
+        unsigned long get_row() const noexcept;
+        unsigned long get_col() const noexcept;
+        void set_row( const unsigned long & ) noexcept;
+        void set_col( const unsigned long & ) noexcept;
 
     public:
-        virtual void print() const;
+        virtual void print() const noexcept = 0;
 
-    friend std::ostream & operator<<( std::ostream &, const Parsed_Object & );
+    friend std::ostream & operator<<( std::ostream &, const Parsed_Object & ) noexcept;
 
-}; // class Parsed_Object
+}; // class Parsed_Object <- Abstract

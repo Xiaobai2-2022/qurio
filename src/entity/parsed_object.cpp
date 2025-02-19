@@ -4,32 +4,30 @@
 
 #include "../../inc/entity/parsed_object.h"
 
-Parsed_Object::Parsed_Object( unsigned long row, unsigned long col) :
+Parsed_Object::Parsed_Object( const unsigned long & row, const unsigned long & col) noexcept :
     _row{row}, _col{col} {}
 
-Parsed_Object::~Parsed_Object() {}
-
-unsigned long Parsed_Object::get_row() const {
+unsigned long Parsed_Object::get_row() const noexcept {
     return this->_row;
 }
 
-unsigned long Parsed_Object::get_col() const {
+unsigned long Parsed_Object::get_col() const noexcept {
     return this->_col;
 }
 
-void Parsed_Object::set_row( const unsigned long & row) {
+void Parsed_Object::set_row( const unsigned long & row) noexcept {
     this->_row = row;
 }
 
-void Parsed_Object::set_col( const unsigned long & col) {
+void Parsed_Object::set_col( const unsigned long & col) noexcept {
     this->_col = col;
 }
 
-void Parsed_Object::print() const {
-    PRINT_INFO( *this );
-}
+// void Parsed_Object::print() const noexcept {
+//     PRINT_INFO( *this );
+// }
 
-std::ostream & operator<<( std::ostream & os, const Parsed_Object & parsed_object) {
+std::ostream & operator<<( std::ostream & os, const Parsed_Object & parsed_object) noexcept {
     os << "Parsed_Object At { Row: " << parsed_object._row << ", Col: " << parsed_object._col << " }";
     return os;
 }

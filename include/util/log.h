@@ -2,33 +2,40 @@
 // Created by xiaobai2-2025 on 2/18/25.
 //
 
-#ifndef LOG_H
-#define LOG_H
+#pragma once
 
 // Base case
-void inline print_args() {
-    std::cout << "\033[0m" << std::endl;
+void inline log_args(std::ostream & os) {
+    os << std::endl;
 }
 
 template <typename T, typename ... Args>
-void print_args(T first, Args... args) {
-    std::cout << first << " ";
-    print_args(args...);
+void log_args( std::ostream & os, T first, Args... args ) {
+    os << first << " ";
+    log_args( os, args... );
 }
 
-#define LOG_DEBUG( ... )
+template <typename T, typename ... Args>
+void print_args( T first, Args... args ) {
+    log_args( std::cout, first, args... );
+    std::cout << "\033[0m";
+}
 
-#define LOG_WARN( ... )
+#define PRINT_DEBUG( ... )
 
-#define LOG_ERROR( ... )
+#define PRINT_WARN( ... )
 
-#define LOG_INFO( ... )
+#define PRINT_ERROR( ... )
+
+#define PRINT_INFO( ... )
 
 #ifdef DEBUG
 
-#define LOG_DEBUG( ... ) \
+#undef PRINT_DEBUG
+
+#define PRINT_DEBUG( ... ) \
 std::cout << "\033[36m[DEBUG]:\t"; \
-print_args(__VA_ARGS__);
+print_args( __VA_ARGS__ );
 
 #define DEV
 
@@ -36,25 +43,50 @@ print_args(__VA_ARGS__);
 
 #ifdef DEV
 
-#define LOG_WARN( ... ) \
+#undef PRINT_WARN
+
+#define PRINT_WARN( ... ) \
 std::cout << "\033[31m[WARNING]:\t"; \
-print_args(__VA_ARGS__);
+print_args( __VA_ARGS__ );
 
 #define PROD
 
 #endif
 
-
 #ifdef PROD
 
-#define LOG_ERROR( ... ) \
-std::cout << "\033[33m[ERROR]:\t"; \
-print_args(__VA_ARGS__);
+#undef PRINT_ERROR
+#undef PRINT_INFO
 
-#define LOG_INFO( ... ) \
+#define PRINT_ERROR( ... ) \
+std::cout << "\033[33m[ERROR]:\t"; \
+print_args( __VA_ARGS__ );
+
+#define PRINT_INFO( ... ) \
 std::cout << "\033[32m[INFO]:\t\t"; \
-print_args(__VA_ARGS__);
+print_args( __VA_ARGS__ );
 
 #endif
 
-#endif // LOG_H
+#ifdef LOGGER
+
+#define LOG( os, ... ) \
+log_args( os, __VA_ARGS__ );
+
+#define LOG_INFO( os, ... ) \
+os << "[INFO]:\t\t"; \
+LOG( os, __VA_ARGS__ );
+
+#define LOG_ERROR( os, ... ) \
+os << "[ERROR]:\t"; \
+LOG( os, __VA_ARGS__ );
+
+#define LOG_WARN( os, ... ) \
+os << "[WARNING]:\t"; \
+LOG( os, __VA_ARGS__ );
+
+#define LOG_DEBUG( os, ... ) \
+os << "[DEBUG]:\t"; \
+LOG( os, __VA_ARGS__ );
+
+#endif

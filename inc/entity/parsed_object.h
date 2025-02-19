@@ -7,7 +7,6 @@
 #include <iostream>
 
 #include "../debug_level.h"
-
 #include "../util/log.h"
 
 class Parsed_Object {
@@ -27,7 +26,7 @@ class Parsed_Object {
         void set_col( const unsigned long & );
 
     public:
-        void print() const;
+        virtual void print() const;
 
     friend std::ostream & operator<<( std::ostream &, const Parsed_Object & );
 

@@ -6,11 +6,10 @@
 
 enum Parsed_Lex_Type {
 
-    DATATYPE,
+    DELIMITER,
     IDENTIFIER,
     KEYWORD,
     NUMBER,
-    STRUCTURE,
 
 }; // enum Parsed_Lex_Type
 
@@ -39,3 +38,16 @@ enum QURIO_Keywords {
     KEY_DATATYPE_SHORT_INTEGER,             // short
 
 }; // enum QURIO_Keywords
+
+enum QURIO_Delimiters {
+
+    DELIMITER_LBRACE,                       // {
+    DELIMITER_RBRACE,                       // }
+    DELIMITER_LSQRBR,                       // [
+    DELIMITER_RSQRBR,                       // ]
+    DELIMITER_LPAREN,                       // (
+    DELIMITER_RPAREN,                       // )
+
+    DELIMITER_SEMICOLON,                    // ;
+
+}; // enum QURIO_Delimiters

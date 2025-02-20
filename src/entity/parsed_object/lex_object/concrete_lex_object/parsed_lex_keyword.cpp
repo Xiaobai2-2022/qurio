@@ -4,7 +4,8 @@
 
 #include "parsed_lex_keyword.h"
 
-#include <type_missmatch_exception.h>
+#include "log.h"
+#include "type_missmatch_exception.h"
 
 Parsed_Lex_Keyword::Parsed_Lex_Keyword( const unsigned long & row, const unsigned long & col,
     const Parsed_Lex_Type & type, const QURIO_Keywords & value) :

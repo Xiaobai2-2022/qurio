@@ -11,4 +11,7 @@
 
 #include "types.h"
 
+#include "type_missmatch_exception.h"
+
+#include "parsed_lex_delimiter.h"
 #include "parsed_lex_keyword.h"

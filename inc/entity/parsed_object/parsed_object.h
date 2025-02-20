@@ -6,9 +6,6 @@
 
 #include <iostream>
 
-#include "debug_level.h"
-#include "log.h"
-
 class Parsed_Object {
 
     private:

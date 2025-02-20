@@ -6,18 +6,16 @@
 
 #include <iostream>
 
-#include "../debug_level.h"
-#include "../util/log.h"
+#include "debug_level.h"
+#include "util/log.h"
 
-#include "../constant/parsed_lex_type.h"
-#include "parsed_object.h"
+#include "constant/types.h"
+#include "entity/parsed_objects/parsed_object.h"
 
 class Parsed_Lex_Object : public Parsed_Object {
 
-    private:
-        Parsed_Lex_Type _type;
-
     protected:
+        Parsed_Lex_Type _type;
         void * _value;
 
     public:
@@ -30,7 +28,6 @@ class Parsed_Lex_Object : public Parsed_Object {
         void set_type( const Parsed_Lex_Type & ) noexcept;
         virtual void set_value( const void * ) noexcept = 0;
 
-    public:
-        virtual void print() const noexcept = 0;
+    friend std::ostream & operator<<( std::ostream &, const Parsed_Lex_Object & ) noexcept;
 
 }; // class parsed_lex_object <- Abstract

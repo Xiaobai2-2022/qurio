@@ -2,7 +2,7 @@
 // Created by xiaobai2-2025 on 2/19/25.
 //
 
-#include "../../inc/entity/parsed_object.h"
+#include "entity/parsed_objects/parsed_object.h"
 
 Parsed_Object::Parsed_Object( const unsigned long & row, const unsigned long & col) noexcept :
     _row{row}, _col{col} {}
@@ -23,11 +23,7 @@ void Parsed_Object::set_col( const unsigned long & col) noexcept {
     this->_col = col;
 }
 
-// void Parsed_Object::print() const noexcept {
-//     PRINT_INFO( *this );
-// }
-
 std::ostream & operator<<( std::ostream & os, const Parsed_Object & parsed_object) noexcept {
-    os << "Parsed_Object At { Row: " << parsed_object._row << ", Col: " << parsed_object._col << " }";
+    os << "Parsed Object At { Row: " << parsed_object._row << ", Col: " << parsed_object._col << " }";
     return os;
 }

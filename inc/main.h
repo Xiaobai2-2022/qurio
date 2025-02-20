@@ -10,4 +10,4 @@
 
 #include "util/log.h"
 
-#include "entity/parsed_object.h"
+#include "entity/parsed_objects/parsed_object.h"

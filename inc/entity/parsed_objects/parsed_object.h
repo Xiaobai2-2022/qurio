@@ -6,8 +6,8 @@
 
 #include <iostream>
 
-#include "../debug_level.h"
-#include "../util/log.h"
+#include "debug_level.h"
+#include "util/log.h"
 
 class Parsed_Object {
 
@@ -24,9 +24,6 @@ class Parsed_Object {
         unsigned long get_col() const noexcept;
         void set_row( const unsigned long & ) noexcept;
         void set_col( const unsigned long & ) noexcept;
-
-    public:
-        virtual void print() const noexcept = 0;
 
     friend std::ostream & operator<<( std::ostream &, const Parsed_Object & ) noexcept;
 

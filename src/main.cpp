@@ -2,7 +2,7 @@
 // Created by xiaobai2-2025 on 2/18/25.
 //
 
-#include "../inc/main.h"
+#include "main.h"
 
 int main() {
 

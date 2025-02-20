@@ -7,8 +7,10 @@
 #include <any>
 #include <iostream>
 
-#include "types.h"
 #include "parsed_object.h"
+#include "types.h"
+
+#include <variant>
 
 class Parsed_Lex_Object : public Parsed_Object {
 
@@ -26,6 +28,9 @@ class Parsed_Lex_Object : public Parsed_Object {
     public:
         [[nodiscard]] virtual std::any get_value() const noexcept = 0;
         virtual void set_value( const std::any & ) = 0;
+
+    public:
+        [[nodiscard]] virtual bool is_valid() const noexcept;
 
     friend std::ostream & operator<<( std::ostream &, const Parsed_Lex_Object & ) noexcept;
 

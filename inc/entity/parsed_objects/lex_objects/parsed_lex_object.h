@@ -30,4 +30,4 @@ class Parsed_Lex_Object : public Parsed_Object {
 
     friend std::ostream & operator<<( std::ostream &, const Parsed_Lex_Object & ) noexcept;
 
-}; // class parsed_lex_object <- Abstract
+}; // class Parsed_Lex_Object <- Abstract

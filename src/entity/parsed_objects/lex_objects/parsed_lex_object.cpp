@@ -2,7 +2,7 @@
 // Created by xiaobai2-2025 on 2/19/25.
 //
 
-#include "entity/parsed_objects/lex_objects/parsed_lex_object.h"
+#include "parsed_lex_object.h"
 
 Parsed_Lex_Object::Parsed_Lex_Object( const unsigned long & row, const unsigned long & col, const Parsed_Lex_Type & type ) noexcept
     : Parsed_Object{ row, col }, _type{ type }, _value{ nullptr } {}

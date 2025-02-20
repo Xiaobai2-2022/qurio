@@ -7,7 +7,7 @@
 #include <iostream>
 
 #include "debug_level.h"
-#include "util/log.h"
+#include "log.h"
 
 class Parsed_Object {
 

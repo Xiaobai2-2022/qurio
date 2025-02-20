@@ -8,6 +8,6 @@
 
 #include "debug_level.h"
 
-#include "util/log.h"
+#include "log.h"
 
-#include "entity/parsed_objects/parsed_object.h"
+#include "parsed_lex_number.h"

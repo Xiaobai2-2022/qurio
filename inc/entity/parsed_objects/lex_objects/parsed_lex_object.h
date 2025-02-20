@@ -9,8 +9,8 @@
 #include "debug_level.h"
 #include "util/log.h"
 
-#include "constant/types.h"
-#include "entity/parsed_objects/parsed_object.h"
+#include "types.h"
+#include "parsed_object.h"
 
 class Parsed_Lex_Object : public Parsed_Object {
 

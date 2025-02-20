@@ -16,4 +16,14 @@ file( GLOB_RECURSE SOURCES "src/*.cpp" )
 add_executable( qurio_executable ${SOURCES} )
 
 # Include directories (for header files)
-include_directories( inc )
+include_directories(
+
+        inc
+            inc/constant
+            inc/entity
+                inc/entity/parsed_objects
+                    inc/entity/parsed_objects/lex_objects
+                        inc/entity/parsed_objects/lex_objects/concrete_lex_objects
+            inc/util
+
+)

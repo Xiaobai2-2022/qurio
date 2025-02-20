@@ -6,13 +6,26 @@
 
 enum Parsed_Lex_Type {
 
-    KEYWORDS,
     DATATYPE,
+    IDENTIFIER,
+    KEYWORD,
     NUMBER,
+    STRUCTURE,
 
 }; // enum Parsed_Lex_Type
 
 enum QURIO_Keywords {
+
+    // control structures
+    KEY_CONTROL_BREAK,                      // break
+    KEY_CONTROL_CASE,                       // case
+    KEY_CONTROL_CONTINUE,                   // continue
+    KEY_CONTROL_DO,                         // do
+    KEY_CONTROL_ELSE,                       // else
+    KEY_CONTROL_IF,                         // if
+    KEY_CONTROL_FOR,                        // for
+    KEY_CONTROL_SWITCH,                     // switch
+    KEY_CONTROL_WHILE,                      // while
 
     // datatypes
     KEY_DATATYPE_ANY,                       // any

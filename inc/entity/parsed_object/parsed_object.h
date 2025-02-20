@@ -20,8 +20,8 @@ class Parsed_Object {
         virtual ~Parsed_Object() noexcept = default;
 
     public:
-        unsigned long get_row() const noexcept;
-        unsigned long get_col() const noexcept;
+        [[nodiscard]] unsigned long get_row() const noexcept;
+        [[nodiscard]] unsigned long get_col() const noexcept;
         void set_row( const unsigned long & ) noexcept;
         void set_col( const unsigned long & ) noexcept;
 

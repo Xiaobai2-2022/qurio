@@ -24,6 +24,7 @@ void Parsed_Object::set_col( const unsigned long & col) noexcept {
 }
 
 std::ostream & operator<<( std::ostream & os, const Parsed_Object & parsed_object) noexcept {
-    os << "Parsed Object At { Row: " << parsed_object._row << ", Col: " << parsed_object._col << " }";
+    os << "Parsed Object: { Row: " << parsed_object._row <<
+        ", Col: " << parsed_object._col << " }";
     return os;
 }

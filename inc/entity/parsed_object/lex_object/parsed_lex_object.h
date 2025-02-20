@@ -4,10 +4,8 @@
 
 #pragma once
 
+#include <any>
 #include <iostream>
-
-#include "debug_level.h"
-#include "util/log.h"
 
 #include "types.h"
 #include "parsed_object.h"
@@ -16,17 +14,18 @@ class Parsed_Lex_Object : public Parsed_Object {
 
     protected:
         Parsed_Lex_Type _type;
-        void * _value;
 
     public:
         Parsed_Lex_Object( const unsigned long &, const unsigned long &, const Parsed_Lex_Type & ) noexcept;
-        virtual ~Parsed_Lex_Object() noexcept = 0;
+        ~Parsed_Lex_Object() noexcept override = default;
 
     public:
-        Parsed_Lex_Type get_type() const noexcept;
-        virtual void * get_value() const noexcept = 0;
+        [[nodiscard]] Parsed_Lex_Type get_type() const noexcept;
         void set_type( const Parsed_Lex_Type & ) noexcept;
-        virtual void set_value( const void * ) noexcept = 0;
+
+    public:
+        [[nodiscard]] virtual std::any get_value() const noexcept = 0;
+        virtual void set_value( const std::any & ) = 0;
 
     friend std::ostream & operator<<( std::ostream &, const Parsed_Lex_Object & ) noexcept;
 

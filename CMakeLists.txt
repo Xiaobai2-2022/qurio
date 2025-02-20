@@ -21,9 +21,10 @@ include_directories(
         inc
             inc/constant
             inc/entity
-                inc/entity/parsed_objects
-                    inc/entity/parsed_objects/lex_objects
-                        inc/entity/parsed_objects/lex_objects/concrete_lex_objects
+        inc/entity/parsed_object
+        inc/entity/parsed_object/lex_object
+        inc/entity/parsed_object/lex_object/concrete_lex_object
+            inc/exception
             inc/util
 
 )

@@ -7,7 +7,8 @@
 #include <iostream>
 
 #include "debug_level.h"
+#include "log.h"
 
-#include "util/log.h"
+#include "types.h"
 
-#include "entity/parsed_object.h"
+#include "parsed_lex_keyword.h"

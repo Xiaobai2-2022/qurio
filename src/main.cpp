@@ -2,27 +2,52 @@
 // Created by xiaobai2-2025 on 2/18/25.
 //
 
-#include "../inc/main.h"
+#include "main.h"
+
+#include <type_missmatch_exception.h>
 
 int main() {
 
-    PRINT_DEBUG( "TEST DEBUG", 1, "TEST" );
-    PRINT_WARN( "TEST WARN", 2 );
-    PRINT_ERROR( "TEST ERROR", 3, "ERROR" );
-    PRINT_INFO( "TEST INFO", 4, "IN", "FO" );
+    Parsed_Lex_Object * lex = new Parsed_Lex_Keyword{ 33, 14, KEYWORD, KEY_CONTROL_CONTINUE };
 
-    Parsed_Object parsed_object{3, 4};
+    try {
 
-    parsed_object.print();
+        PRINT_DEBUG( "OK", "Line 1" );
 
-    parsed_object.set_col(5);
-    parsed_object.print();
+        PRINT_INFO( *dynamic_cast<Parsed_Lex_Keyword *>( lex ) );
 
-    PRINT_DEBUG( parsed_object.get_row() );
+        PRINT_DEBUG( "OK", "Line 2" );
 
-    parsed_object.set_row(10);
-    parsed_object.print();
+        lex->set_value( KEY_CONTROL_BREAK );
 
-    PRINT_WARN( parsed_object.get_col() );
+        PRINT_DEBUG( "OK", "Line 3" );
 
-}
+        PRINT_INFO( *dynamic_cast<Parsed_Lex_Keyword *>( lex ) );
+
+        PRINT_DEBUG( "OK", "Line 4" );
+
+        lex->set_row( 150 );
+
+        PRINT_DEBUG( "OK", "Line 5" );
+
+        PRINT_INFO( *dynamic_cast<Parsed_Lex_Keyword *>( lex ) );
+
+        PRINT_DEBUG( "OK", "Line 6" );
+
+        PRINT_WARN( "Illegal Change Here" );
+
+        lex->set_value( KEYWORD );
+
+        PRINT_DEBUG( "OK", "Line 7" );
+
+        PRINT_INFO( *dynamic_cast<Parsed_Lex_Keyword *>( lex ) );
+
+        PRINT_DEBUG( "OK", "Line 8" );
+
+    } catch( const Type_Missmatch_Exception & tme ) {
+        PRINT_ERROR( tme.what(), "At:", tme.get_parsed_object());
+    } // try
+
+    delete lex;
+
+} // main

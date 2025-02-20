@@ -9,6 +9,10 @@ void inline log_args(std::ostream & os) {
     os << std::endl;
 }
 
+void inline print_args() {
+    std::cout << std::endl;
+}
+
 template <typename T, typename ... Args>
 void log_args( std::ostream & os, T first, Args... args ) {
     os << first << " ";
@@ -46,7 +50,7 @@ print_args( __VA_ARGS__ );
 #undef PRINT_WARN
 
 #define PRINT_WARN( ... ) \
-std::cout << "\033[31m[WARNING]:\t"; \
+std::cout << "\033[33m[WARNING]:\t"; \
 print_args( __VA_ARGS__ );
 
 #define PROD
@@ -59,7 +63,7 @@ print_args( __VA_ARGS__ );
 #undef PRINT_INFO
 
 #define PRINT_ERROR( ... ) \
-std::cout << "\033[33m[ERROR]:\t"; \
+std::cout << "\033[31m[ERROR]:\t"; \
 print_args( __VA_ARGS__ );
 
 #define PRINT_INFO( ... ) \

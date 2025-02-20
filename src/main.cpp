@@ -10,37 +10,23 @@ int main() {
 
     try {
 
-        PRINT_DEBUG( "OK", "Line 1" );
-
         PRINT_INFO( *dynamic_cast< Parsed_Lex_Delimiter * >( lex ) );
 
-        PRINT_DEBUG( "OK", "Line 2" );
+        PRINT_INFO( "Lex is valid:", lex->is_valid(), "." );
 
         lex->set_value( DELIMITER_LPAREN );
 
-        PRINT_DEBUG( "OK", "Line 3" );
-
         PRINT_INFO( *dynamic_cast< Parsed_Lex_Delimiter * >( lex ) );
-
-        PRINT_DEBUG( "OK", "Line 4" );
 
         lex->set_row( 150 );
 
-        PRINT_DEBUG( "OK", "Line 5" );
-
         PRINT_INFO( *dynamic_cast< Parsed_Lex_Delimiter * >( lex ) );
-
-        PRINT_DEBUG( "OK", "Line 6" );
 
         PRINT_WARN( "Illegal Change Here" );
 
         lex->set_value( KEYWORD );
 
-        PRINT_DEBUG( "OK", "Line 7" );
-
         PRINT_INFO( *dynamic_cast< Parsed_Lex_Delimiter * >( lex ) );
-
-        PRINT_DEBUG( "OK", "Line 8" );
 
     } catch( const Type_Missmatch_Exception & tme ) {
         PRINT_ERROR( tme.what(), "At:", tme.get_parsed_object());

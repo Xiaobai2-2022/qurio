@@ -15,6 +15,10 @@ void Parsed_Lex_Object::set_type( const Parsed_Lex_Type & type ) noexcept {
     this->_type = type;
 }
 
+bool Parsed_Lex_Object::is_valid() const noexcept {
+    return true;
+}
+
 std::ostream & operator<<( std::ostream & os, const Parsed_Lex_Object & lex_object ) noexcept {
     const Parsed_Object & base = lex_object;
     os << "Parsed Lex Object is a: " << base;

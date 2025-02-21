@@ -15,22 +15,6 @@ std::any Token_Delimiter::get_value() const noexcept {
     return this->_value;
 }
 
-void Token_Delimiter::set_value( const std::any & value ) {
-
-    try {
-        this->_value = std::any_cast< QURIO_Delimiter >( value );
-    } catch ( const std::bad_any_cast & ) {
-        PRINT_DEBUG( "Type Missmatch Exception thrown",
-            "in parse_lex_delimiter.cpp",
-            "in Token_Delimiter::set_value( const std::any )." );
-        throw Type_Missmatch_Exception {
-            "Unexpected Delimiter Replacement",
-            *this
-        };
-    }
-
-}
-
 std::ostream & operator<<( std::ostream & os, const Token_Delimiter & lex_keyword ) noexcept {
     const Token & base = lex_keyword;
     os << "Parsed Lex Delimiter: { Type: " << lex_keyword._type <<

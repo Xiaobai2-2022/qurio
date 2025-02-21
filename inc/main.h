@@ -18,3 +18,4 @@
 #include "token_delimiter.h"
 #include "token_keyword.h"
 #include "token_number.h"
+#include "token_symbol.h"

@@ -30,36 +30,6 @@ std::any Token_Number::get_value() const noexcept {
     return this->_value;
 }
 
-void Token_Number::set_value( const std::any & value ) {
-
-    try {
-        this->_value = std::any_cast< std::string >( value );
-    } catch ( const std::bad_any_cast & ) {
-        PRINT_DEBUG( "Type Missmatch Exception thrown",
-            "in parse_lex_number.cpp",
-            "in Token_Number::set_value( const std::any )."
-        );
-        throw Type_Missmatch_Exception {
-            "Unexpected Control Keyword Replacement",
-            *this
-        };
-    }
-
-    if ( !Qurio_String::is_valid_number( this->_value ) )
-    {
-        PRINT_DEBUG(
-            "Type Missmatch Exception thrown",
-            "in parse_lex_number.cpp",
-            "in Token_Number::set_value( const std::any )."
-        );
-        throw Type_Missmatch_Exception{
-            "Invalid Number Token",
-            *this
-        };
-    }
-
-}
-
 std::ostream & operator<<( std::ostream & os, const Token_Number & lex_number ) noexcept {
 
     const Token & base = lex_number;

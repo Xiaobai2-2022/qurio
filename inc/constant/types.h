@@ -11,6 +11,7 @@ enum Parsed_Lex_Type {
     KEYWORD,
     NUMBER,
     SYMBOL,
+    STRING,
 
 }; // enum Parsed_Lex_Type
 
@@ -51,6 +52,7 @@ enum QURIO_Delimiter {
     DELIMITER_LPAREN,                       // (
     DELIMITER_RPAREN,                       // )
 
+    DELIMITER_COMMA,                        // ,
     DELIMITER_SEMICOLON,                    // ;
 
 }; // enum QURIO_Delimiter
@@ -61,13 +63,51 @@ enum QURIO_Symbol {
     SYMBOL_ARTH_SUBTRACTION,                // -
     SYMBOL_ARTH_MULTIPLICATION,             // *
     SYMBOL_ARTH_DIVISION,                   // /
+    SYMBOL_ARTH_MODULUS,                    // %
+    SYMBOL_ARTH_POWER,                      // **
+
+    SYMBOL_PLUS_PLUS,                       // ++
+    SYMBOL_MINUS_MINUS,                     // --
+
+    SYMBOL_ASSIGNMENT,                      // =
 
     SYMBOL_COMP_LESSER,                     // <
     SYMBOL_COMP_LESSEREQ,                   // <=
     SYMBOL_COMP_EQUAL,                      // ==
-    SYMBOL_COMP_GREATEREQ,                  // >
-    SYMBOL_COMP_GREATER,
+    SYMBOL_COMP_NOTEQUAL,                   // !=
+    SYMBOL_COMP_GREATEREQ,                  // >=
+    SYMBOL_COMP_GREATER,                    // >
 
-    SYMBOL_ASSIGNMENT,                      // =
+    SYMBOL_LOGICAL_AND,                     // &&
+    SYMBOL_LOGICAL_OR,                      // ||
+    SYMBOL_LOGICAL_NOT,                     // !
+
+    SYMBOL_BITWISE_AND,                     // &
+    SYMBOL_BITWISE_OR,                      // |
+    SYMBOL_BITWISE_XOR,                     // ^
+    SYMBOL_BITWISE_NOT,                     // ~
+
+    SYMBOL_BITWISE_LSHIFT,                  // <<
+    SYMBOL_BITWISE_RSHIFT,                  // >>
+
+    SYMBOL_ASSN_ADDITION,                   // +=
+    SYMBOL_ASSN_SUBTRACTION,                // -=
+    SYMBOL_ASSN_MULTIPLICATION,             // *=
+    SYMBOL_ASSN_DIVISION,                   // /=
+    SYMBOL_ASSN_MODULUS,                    // %=
+    SYMBOL_ASSN_POWER,                      // **=
+
+    SYMBOL_ASSN_BITWISE_AND,                // &=
+    SYMBOL_ASSN_BITWISE_OR,                 // |=
+    SYMBOL_ASSN_BITWISE_XOR,                // ^=
+    SYMBOL_ASSN_BITWISE_NOT,                // ~=
+    SYMBOL_ASSN_BITWISE_LSHIFT,             // <<=
+    SYMBOL_ASSN_BITWISE_RSHIFT,             // >>=
+
+    SYMBOL_TERNARY_COND,                    // ?
+    SYMBOL_TERNARY_OR,                      // :
+
+    SYMBOL_ACCESS,                          // .
+    SYMBOL_ACCESS_PTR,                      // ->
 
 }; // enum QURIO_Symbol

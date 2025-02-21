@@ -8,9 +8,7 @@
 #include <iostream>
 
 #include "parsed_object.h"
-#include "types.h"
-
-#include <variant>
+#include "token_enums.h"
 
 class Token : public Parsed_Object {
 
@@ -27,7 +25,6 @@ class Token : public Parsed_Object {
 
     public:
         [[nodiscard]] virtual std::any get_value() const noexcept = 0;
-        virtual void set_value( const std::any & ) = 0;
 
     friend std::ostream & operator<<( std::ostream &, const Token & ) noexcept;
 

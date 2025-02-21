@@ -15,8 +15,8 @@ void Token::set_type( const Parsed_Lex_Type & type ) noexcept {
     this->_type = type;
 }
 
-std::ostream & operator<<( std::ostream & os, const Token & lex_object ) noexcept {
-    const Parsed_Object & base = lex_object;
+std::ostream & operator<<( std::ostream & os, const Token & token ) noexcept {
+    const Parsed_Object & base = token;
     os << "Parsed Lex Object is a: " << base;
     return os;
 }

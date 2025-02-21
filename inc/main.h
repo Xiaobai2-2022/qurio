@@ -10,11 +10,14 @@
 #include "debug_level.h"
 #include "log.h"
 
-#include "types.h"
+#include "token_enums.h"
 #include "qurio_string.h"
 
 #include "type_missmatch_exception.h"
 
 #include "token_delimiter.h"
+#include "token_identifier.h"
 #include "token_keyword.h"
 #include "token_number.h"
+#include "token_string.h"
+#include "token_symbol.h"

@@ -110,4 +110,8 @@ enum QURIO_Symbol {
     SYMBOL_ACCESS,                          // .
     SYMBOL_ACCESS_PTR,                      // ->
 
+    SYMBOL_ESCAPE,                          // \
+
+    SYMBOL_REGISTER,                        // $
+
 }; // enum QURIO_Symbol

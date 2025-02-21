@@ -29,9 +29,6 @@ class Parsed_Lex_Object : public Parsed_Object {
         [[nodiscard]] virtual std::any get_value() const noexcept = 0;
         virtual void set_value( const std::any & ) = 0;
 
-    public:
-        [[nodiscard]] virtual bool is_valid() const noexcept;
-
     friend std::ostream & operator<<( std::ostream &, const Parsed_Lex_Object & ) noexcept;
 
 }; // class Parsed_Lex_Object <- Abstract

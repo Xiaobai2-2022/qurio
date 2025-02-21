@@ -9,11 +9,11 @@
 class Parsed_Lex_Keyword final : public Parsed_Lex_Object {
 
     private:
-        QURIO_Keywords _value;
+        QURIO_Keyword _value;
 
     public:
         Parsed_Lex_Keyword( const unsigned long &, const unsigned long &,
-            const Parsed_Lex_Type &, const QURIO_Keywords & );
+            const Parsed_Lex_Type &, const QURIO_Keyword & ) noexcept;
         ~Parsed_Lex_Keyword() noexcept override = default;
 
     public:

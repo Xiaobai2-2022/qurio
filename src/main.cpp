@@ -6,29 +6,25 @@
 
 int main() {
 
-    Parsed_Lex_Object * lex = new Parsed_Lex_Number{ 33, 14, NUMBER, "0x21" };
+    Token * lex = new Token_Delimiter{ 33, 14, DELIMITER_LBRACE };
 
     try {
 
-        PRINT_INFO( *dynamic_cast< Parsed_Lex_Number * >( lex ) );
+        PRINT_INFO( *dynamic_cast< Token_Delimiter * >( lex ) );
 
-        const std::string number = "-245.34";
+        lex->set_value( DELIMITER_RBRACE );
 
-        lex->set_value( number );
-
-        PRINT_INFO( *dynamic_cast< Parsed_Lex_Number * >( lex ) );
+        PRINT_INFO( *dynamic_cast< Token_Delimiter * >( lex ) );
 
         lex->set_row( 150 );
 
-        PRINT_INFO( *dynamic_cast< Parsed_Lex_Number * >( lex ) );
+        PRINT_INFO( *dynamic_cast< Token_Delimiter * >( lex ) );
 
         PRINT_WARN( "Illegal Change Here" );
 
-        const std::string not_number = "0xp";
+        lex->set_value( SYMBOL );
 
-        lex->set_value( not_number );
-
-        PRINT_INFO( *dynamic_cast< Parsed_Lex_Number * >( lex ) );
+        PRINT_INFO( *dynamic_cast< Token_Delimiter * >( lex ) );
 
     } catch( const Type_Missmatch_Exception & tme ) {
         PRINT_ERROR( tme.what(), "At:", tme.get_parsed_object());

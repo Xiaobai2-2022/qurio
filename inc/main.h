@@ -15,6 +15,6 @@
 
 #include "type_missmatch_exception.h"
 
-#include "parsed_lex_delimiter.h"
-#include "parsed_lex_keyword.h"
-#include "parsed_lex_number.h"
+#include "token_delimiter.h"
+#include "token_keyword.h"
+#include "token_number.h"

@@ -13,4 +13,4 @@ class Qurio_String final {
         static bool is_valid_number( const std::string & );
 
 
-}; // Parse_Number
+}; // class Qurio_String <- Static

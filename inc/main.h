@@ -4,16 +4,14 @@
 
 #pragma once
 
+#include <fstream>
 #include <iostream>
 #include <string>
-
-#include "debug_level.h"
-#include "log.h"
+#include <vector>
 
 #include "token_enums.h"
-#include "qurio_string.h"
 
-#include "type_missmatch_exception.h"
+#include "lexer_msg.h"
 
 #include "token_delimiter.h"
 #include "token_identifier.h"
@@ -21,3 +19,10 @@
 #include "token_number.h"
 #include "token_string.h"
 #include "token_symbol.h"
+
+#include "type_missmatch_exception.h"
+
+#include "qurio_string.h"
+
+#include "log_level.h"
+#include "log.h"

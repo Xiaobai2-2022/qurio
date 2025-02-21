@@ -4,16 +4,12 @@
 
 #include "main.h"
 
+#include <qurio_lexer.h>
+
 int main() {
 
-    Token * lex = new Token_Identifier { 33, 14, "SYMBOL_COMP_EQUAL" };
+    const std::string f_name = "/home/xiaobai2-2025/proj-q/qurio/test/debug_test.qc";
 
-    PRINT_INFO( *dynamic_cast< Token_Identifier * >( lex ) );
-
-    lex->set_row( 140 );
-
-    PRINT_INFO( *dynamic_cast< Token_Identifier * >( lex ) );
-
-    delete lex;
+    std::vector< Token * >tokens = Qurio_Lexer::tokenizer( f_name );
 
 } // main

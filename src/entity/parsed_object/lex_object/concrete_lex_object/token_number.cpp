@@ -15,7 +15,7 @@ Token_Number::Token_Number( const unsigned long & row, const unsigned long & col
     if ( !Qurio_String::is_valid_number( value ) ) {
         PRINT_DEBUG(
             "Type Missmatch Exception thrown",
-            "in parse_lex_number.cpp",
+            "in parse_token_number.cpp",
             "in Token_Number::Token_Number( const unsigned long &, const unsigned long &, const Parsed_Lex_Type, const std::string & )."
         );
         throw Type_Missmatch_Exception{
@@ -30,11 +30,11 @@ std::any Token_Number::get_value() const noexcept {
     return this->_value;
 }
 
-std::ostream & operator<<( std::ostream & os, const Token_Number & lex_number ) noexcept {
+std::ostream & operator<<( std::ostream & os, const Token_Number & token_number ) noexcept {
 
-    const Token & base = lex_number;
-    os << "Parsed Lex Number: { Type: " << lex_number._type <<
-        ", Value: " << lex_number._value << " } is a: " << base;
+    const Token & base = token_number;
+    os << "Parsed Lex Number: { Type: " << token_number._type <<
+        ", Value: " << token_number._value << " } is a: " << base;
     return os;
 
 }

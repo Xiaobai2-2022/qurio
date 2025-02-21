@@ -15,9 +15,9 @@ std::any Token_Delimiter::get_value() const noexcept {
     return this->_value;
 }
 
-std::ostream & operator<<( std::ostream & os, const Token_Delimiter & lex_keyword ) noexcept {
-    const Token & base = lex_keyword;
-    os << "Parsed Lex Delimiter: { Type: " << lex_keyword._type <<
-        ", Value: " << lex_keyword._value << " } is a: " << base;
+std::ostream & operator<<( std::ostream & os, const Token_Delimiter & token_delimiter ) noexcept {
+    const Token & base = token_delimiter;
+    os << "Parsed Lex Delimiter: { Type: " << token_delimiter._type <<
+        ", Value: " << token_delimiter._value << " } is a: " << base;
     return os;
 }

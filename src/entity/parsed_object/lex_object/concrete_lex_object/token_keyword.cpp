@@ -15,9 +15,9 @@ std::any Token_Keyword::get_value() const noexcept {
     return this->_value;
 }
 
-std::ostream & operator<<( std::ostream & os, const Token_Keyword & lex_keyword ) noexcept {
-    const Token & base = lex_keyword;
-    os << "Parsed Lex Keyword: { Type: " << lex_keyword._type <<
-        ", Value: " << lex_keyword._value << " } is a: " << base;
+std::ostream & operator<<( std::ostream & os, const Token_Keyword & token_keyword ) noexcept {
+    const Token & base = token_keyword;
+    os << "Parsed Lex Keyword: { Type: " << token_keyword._type <<
+        ", Value: " << token_keyword._value << " } is a: " << base;
     return os;
 }

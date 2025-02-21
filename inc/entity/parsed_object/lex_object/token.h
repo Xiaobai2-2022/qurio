@@ -8,9 +8,7 @@
 #include <iostream>
 
 #include "parsed_object.h"
-#include "types.h"
-
-#include <variant>
+#include "token_enums.h"
 
 class Token : public Parsed_Object {
 

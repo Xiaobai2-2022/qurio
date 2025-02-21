@@ -10,10 +10,11 @@ enum Parsed_Lex_Type {
     IDENTIFIER,
     KEYWORD,
     NUMBER,
+    SYMBOL,
 
 }; // enum Parsed_Lex_Type
 
-enum QURIO_Keywords {
+enum QURIO_Keyword {
 
     // control structures
     KEY_CONTROL_BREAK,                      // break
@@ -34,12 +35,14 @@ enum QURIO_Keywords {
     KEY_DATATYPE_FLOAT,                     // float
     KEY_DATATYPE_INTEGER,                   // int
     KEY_DATATYPE_LONG_INTEGER,              // long
-    KEY_DATATYPE_NUMBER,                    // num
-    KEY_DATATYPE_SHORT_INTEGER,             // short
+    KEY_DATATYPE_UNSIGNED_DOUBLE_FLOAT,     // unsigned double
+    KEY_DATATYPE_UNSIGNED_FLOAT,            // unsigned float
+    KEY_DATATYPE_UNSIGNED_INTEGER,          // unsigned int
+    KEY_DATATYPE_UNSIGNED_LONG_INTEGER,     // unsigned long
 
-}; // enum QURIO_Keywords
+}; // enum QURIO_Keyword
 
-enum QURIO_Delimiters {
+enum QURIO_Delimiter {
 
     DELIMITER_LBRACE,                       // {
     DELIMITER_RBRACE,                       // }
@@ -50,4 +53,21 @@ enum QURIO_Delimiters {
 
     DELIMITER_SEMICOLON,                    // ;
 
-}; // enum QURIO_Delimiters
+}; // enum QURIO_Delimiter
+
+enum QURIO_Symbol {
+
+    SYMBOL_ARTH_ADDITION,                   // +
+    SYMBOL_ARTH_SUBTRACTION,                // -
+    SYMBOL_ARTH_MULTIPLICATION,             // *
+    SYMBOL_ARTH_DIVISION,                   // /
+
+    SYMBOL_COMP_LESSER,                     // <
+    SYMBOL_COMP_LESSEREQ,                   // <=
+    SYMBOL_COMP_EQUAL,                      // ==
+    SYMBOL_COMP_GREATEREQ,                  // >
+    SYMBOL_COMP_GREATER,
+
+    SYMBOL_ASSIGNMENT,                      // =
+
+}; // enum QURIO_Symbol

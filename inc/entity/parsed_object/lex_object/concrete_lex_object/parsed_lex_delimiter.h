@@ -9,11 +9,11 @@
 class Parsed_Lex_Delimiter final : public Parsed_Lex_Object {
 
     private:
-        QURIO_Delimiters _value;
+        QURIO_Delimiter _value;
 
     public:
         Parsed_Lex_Delimiter( const unsigned long &, const unsigned long &,
-            const QURIO_Delimiters & );
+            const QURIO_Delimiter & ) noexcept;
         ~Parsed_Lex_Delimiter() noexcept override = default;
 
     public:

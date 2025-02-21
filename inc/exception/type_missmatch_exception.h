@@ -26,4 +26,4 @@ class Type_Missmatch_Exception final : public std::exception {
     public:
         [[nodiscard]] const Parsed_Object & get_parsed_object() const noexcept;
 
-};
+}; // class Type_Missmatch_Exception <- Exception

@@ -7,14 +7,14 @@
 #include <exception>
 #include <string>
 
-class File_Not_Found_Exception final : public std::exception {
+class File_Failure_Exception final : public std::exception {
 
     private:
         std::string _msg;
         std::string _f_name;
 
     public:
-        explicit File_Not_Found_Exception( const std::string &, const std::string & ) noexcept;
+        explicit File_Failure_Exception( const std::string &, const std::string & ) noexcept;
 
     public:
         [[nodiscard]] const char * what() const noexcept override;
@@ -22,4 +22,4 @@ class File_Not_Found_Exception final : public std::exception {
     public:
         [[nodiscard]] std::string get_f_name() const noexcept;
 
-}; // class File_Not_Found_Exception <- Exception
+}; // class File_Failure_Exception <- Exception

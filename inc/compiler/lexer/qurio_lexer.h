@@ -7,13 +7,14 @@
 #include <fstream>
 #include <vector>
 
-#include "file_not_found_exception.h"
-
 #include "token.h"
 
 class Qurio_Lexer {
 
+    private:
+        static void get_token_helper( std::fstream &, char &, std::vector< Token * > & );
+
     public:
-        static std::vector< Token * >tokenizer( const std::string & );
+        static void tokenizer( const std::string &, std::vector< Token * > & );
 
 };

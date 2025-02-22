@@ -14,7 +14,7 @@ std::any Token_Identifier::get_value() const noexcept {
     return this->_value;
 }
 
-std::ostream & operator<<( std::ostream & os, const Token_Identifier & token_identifier ) noexcept {
+std::ostream & operator<<( std::ostream & os, const Token_Identifier & token_identifier) noexcept {
 
     const Token & base = token_identifier;
     os << "Parsed Lex Number: { Type: " << token_identifier._type <<

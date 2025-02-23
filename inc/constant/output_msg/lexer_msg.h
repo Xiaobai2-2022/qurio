@@ -24,3 +24,5 @@
 
 #define LEXER_NO_FILE "\tTokenizer Failed to open file:"
 #define LEXER_FILE_READ_FAIL "\tFile read terminated unexpectedly"
+
+#define LEXER_RETHROW "\tException Rethrown here:"

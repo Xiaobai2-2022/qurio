@@ -8,7 +8,7 @@
 
 class Parsed_Object {
 
-    private:
+    protected:
         unsigned long _row;
         unsigned long _col;
 

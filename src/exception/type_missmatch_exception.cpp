@@ -5,13 +5,17 @@
 #include "type_missmatch_exception.h"
 
 Type_Missmatch_Exception::Type_Missmatch_Exception( const std::string & msg,
-    const Parsed_Object & parsed_object ) noexcept :
-    _msg{ msg }, _parsed_object{parsed_object} {}
+    const unsigned long & row, const unsigned long & col ) noexcept :
+    _msg{ msg }, _row{row}, _col{col} {}
 
 const char * Type_Missmatch_Exception::what() const noexcept {
     return this->_msg.c_str();
 }
 
-const Parsed_Object & Type_Missmatch_Exception::get_parsed_object() const noexcept {
-    return this->_parsed_object;
+const unsigned long & Type_Missmatch_Exception::get_row() const noexcept {
+    return this->_row;
+}
+
+const unsigned long & Type_Missmatch_Exception::get_col() const noexcept {
+    return this->_col;
 }

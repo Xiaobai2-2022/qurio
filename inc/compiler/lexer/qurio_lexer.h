@@ -5,16 +5,29 @@
 #pragma once
 
 #include <fstream>
-#include <vector>
+#include <queue>
 
 #include "token.h"
 
 class Qurio_Lexer {
 
     private:
-        static void get_token_helper( std::fstream &, char &, std::vector< Token * > & );
+        Qurio_Lexer();
+
+    private:
+        static void get_token_helper(
+            unsigned long &, unsigned long &,
+            std::fstream &, char &, std::queue< Token * > & );
+
+        static void get_token_delimiter_helper(
+            const unsigned long &, const unsigned long &,
+            const char &, std::queue< Token * > & );
+
+        static void get_token_number_helper(
+            const unsigned long &, unsigned long &,
+            std::fstream &, char &, std::queue< Token * > & );
 
     public:
-        static void tokenizer( const std::string &, std::vector< Token * > & );
+        static void tokenizer( const std::string &, std::queue< Token * > & );
 
-};
+}; // class Qurio_Lexer <- static

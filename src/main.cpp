@@ -10,17 +10,31 @@ int main() {
 
     const std::string f_name = "/home/xiaobai2-2025/proj-q/qurio/test/debug_test.qc";
 
-    std::vector< Token * >tokens;
+    std::queue< Token * >tokens;
 
-    Qurio_Lexer::tokenizer( f_name, tokens );
+    try {
+        Qurio_Lexer::tokenizer( f_name, tokens );
+    } catch( Type_Missmatch_Exception tme ) {
+        PRINT_ERROR( tme.what(), "at", tme.get_row(), tme.get_col() );
+    }
 
     PRINT_DEBUG( tokens.size() );
 
     while( !tokens.empty() ) {
 
-        Token_Identifier * token = dynamic_cast< Token_Identifier * >( tokens.at(0) );
-        tokens.erase( tokens.begin() );
-        PRINT_DEBUG( *token );
+        Token * token = tokens.front();
+        tokens.pop();
+
+        if( token->get_type() == DELIMITER ) {
+            auto * token_delimiter = dynamic_cast< Token_Delimiter * > ( token );
+            PRINT_DEBUG( * token_delimiter );
+        }
+
+        if( token->get_type() == NUMBER ) {
+            auto * token_number = dynamic_cast< Token_Number * > ( token );
+            PRINT_DEBUG( * token_number );
+        }
+
         delete token;
 
     }

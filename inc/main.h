@@ -7,7 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <vector>
+#include <queue>
 
 #include "token_enums.h"
 

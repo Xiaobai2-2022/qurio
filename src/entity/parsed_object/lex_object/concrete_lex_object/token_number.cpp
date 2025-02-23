@@ -9,8 +9,8 @@
 #include "qurio_string.h"
 
 Token_Number::Token_Number( const unsigned long & row, const unsigned long & col,
-    const Parsed_Lex_Type & type, const std::string & value) :
-    Token{ row, col, type }, _value{ value } {
+    const std::string & value) :
+    Token{ row, col, NUMBER }, _value{ value } {
 
     if ( !Qurio_String::is_valid_number( value ) ) {
         PRINT_DEBUG(
@@ -20,7 +20,8 @@ Token_Number::Token_Number( const unsigned long & row, const unsigned long & col
         );
         throw Type_Missmatch_Exception{
             "Invalid Token",
-            *this
+            this->_row,
+            this->_col
         };
     }
 

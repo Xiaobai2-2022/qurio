@@ -15,15 +15,18 @@ class Type_Missmatch_Exception final : public std::exception {
         std::string _msg;
 
     private:
-        const Parsed_Object & _parsed_object;
+        const unsigned long _row;
+        const unsigned long _col;
 
     public:
-        explicit Type_Missmatch_Exception( const std::string &, const Parsed_Object & ) noexcept;
+        explicit Type_Missmatch_Exception( const std::string &,
+            const unsigned long &, const unsigned long & ) noexcept;
 
     public:
         [[nodiscard]] const char * what() const noexcept override;
 
     public:
-        [[nodiscard]] const Parsed_Object & get_parsed_object() const noexcept;
+        [[nodiscard]] const unsigned long & get_row() const noexcept;
+        [[nodiscard]] const unsigned long & get_col() const noexcept;
 
 }; // class Type_Missmatch_Exception <- Exception

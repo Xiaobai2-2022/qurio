@@ -15,4 +15,3 @@ const char * File_Failure_Exception::what() const noexcept {
 std::string File_Failure_Exception::get_f_name() const noexcept {
     return this->_f_name;
 }
-

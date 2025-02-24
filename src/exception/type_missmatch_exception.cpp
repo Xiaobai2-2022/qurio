@@ -9,7 +9,10 @@ Type_Missmatch_Exception::Type_Missmatch_Exception( const std::string & msg,
     _msg{ msg }, _row{row}, _col{col} {}
 
 const char * Type_Missmatch_Exception::what() const noexcept {
-    return this->_msg.c_str();
+    _cached_msg = _msg +
+        " at { Row: " + std::to_string(_row) +
+        ", Col: " + std::to_string( _col ) + " }";
+    return _cached_msg.c_str();
 }
 
 const unsigned long & Type_Missmatch_Exception::get_row() const noexcept {

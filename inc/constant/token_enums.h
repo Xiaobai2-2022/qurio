@@ -6,6 +6,7 @@
 
 enum Parsed_Lex_Type {
 
+    ERROR_TYPE,
     DELIMITER,
     IDENTIFIER,
     KEYWORD,

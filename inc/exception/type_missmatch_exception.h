@@ -13,6 +13,7 @@ class Type_Missmatch_Exception final : public std::exception {
 
     private:
         std::string _msg;
+        mutable std::string _cached_msg;
 
     private:
         const unsigned long _row;

@@ -4,9 +4,11 @@
 
 #include "qurio_lexer.h"
 
-#include <token_delimiter.h>
-#include <token_identifier.h>
-#include <token_number.h>
+#include <token_error.h>
+
+#include "token_delimiter.h"
+#include "token_identifier.h"
+#include "token_number.h"
 
 #include "file_failure_exception.h"
 #include "lexer_msg.h"
@@ -63,11 +65,10 @@ void Qurio_Lexer::tokenizer( const std::string & f_name, std::queue<Token *> & t
 
         try {
             Qurio_Lexer::get_token_helper( row, col, fs, next_char, tokens );
-        } catch( Type_Missmatch_Exception & tme ) {
-            LEXER_ERROR( LEXER_RETHROW, tme.what(), "At Qurio_Lexer::tokenizer." );
-            throw;
+        } catch( std::exception & tme ) {
+            LEXER_ERROR( LEXER_RETHROW, tme.what(), "at Qurio_Lexer::tokenizer." );
+            // throw;
         }
-        ++col;
 
     }
 
@@ -83,7 +84,7 @@ void Qurio_Lexer::tokenizer( const std::string & f_name, std::queue<Token *> & t
 
     LEXER_DEBUG( LEXER_END );
 
-}
+} // tokenizer
 
 void Qurio_Lexer::get_token_helper(
     unsigned long & row, unsigned long & col,
@@ -96,15 +97,15 @@ void Qurio_Lexer::get_token_helper(
     } else if( cur_char >= '0' && cur_char <= '9' ) {
         try {
             Qurio_Lexer::get_token_number_helper( row, col, fs, cur_char, tokens );
-        } catch( Type_Missmatch_Exception & tme ) {
-            LEXER_ERROR( LEXER_RETHROW, tme.what(), "At Qurio_Lexer::get_token_helper." );
-            throw;
+        } catch( std::exception & tme ) {
+            LEXER_ERROR( LEXER_ERROR_CAUGHT, tme.what(), "at Qurio_Lexer::get_token_helper." );
+            // throw;
         }
     } else {
         fs.get( cur_char );
         ++col;
     }
-}
+} // get_token_helper
 
 void Qurio_Lexer::get_token_delimiter_helper(
     const unsigned long & row, const unsigned long & col,
@@ -112,7 +113,7 @@ void Qurio_Lexer::get_token_delimiter_helper(
 
     auto * token = new Token_Delimiter { row, col, Token_List::delimiter_list[ cur_char ] };
     tokens.push( token );
-}
+} // get_token_delimiter_helper
 
 void Qurio_Lexer::get_token_number_helper(
     const unsigned long & row, unsigned long & col,
@@ -122,7 +123,10 @@ void Qurio_Lexer::get_token_number_helper(
 
     std::string cur_number;
 
-    while( !fs.eof() && !Token_List::symbol_list.contains( cur_char ) ) {
+    while( !fs.eof() &&
+        ( !Token_List::symbol_list.contains( cur_char ) ||
+            cur_char == '\'' || cur_char == '.'
+        ) ) {
         cur_number += cur_char;
         fs.get( cur_char );
         ++cur_col;
@@ -132,10 +136,12 @@ void Qurio_Lexer::get_token_number_helper(
         auto * token = new Token_Number { row, col, cur_number };
         tokens.push( token );
     } catch( Type_Missmatch_Exception & tme ) {
-        LEXER_ERROR( LEXER_RETHROW, tme.what(), "At Qurio_Lexer::get_token_number_helper." );
+        tokens.push( new Token_Error{ row, col, tme.what() } );
+        LEXER_ERROR( LEXER_RETHROW, tme.what(), "at Qurio_Lexer::get_token_number_helper." );
+        col = cur_col;
         throw;
     }
 
     col = cur_col;
 
-}
+} // get_token_number_helper

@@ -4,7 +4,6 @@
 
 #include "token_symbol.h"
 
-#include "log.h"
 #include "type_missmatch_exception.h"
 
 Token_Symbol::Token_Symbol( const unsigned long & row, const unsigned long & col,
@@ -17,7 +16,7 @@ std::any Token_Symbol::get_value() const noexcept {
 
 std::ostream & operator<<( std::ostream & os, const Token_Symbol & token_symbol ) noexcept {
     const Token & base = token_symbol;
-    os << "Parsed Lex Symbol: { Type: " << token_symbol._type <<
+    os << "Token Symbol: { Type: " << token_symbol._type <<
         ", Value: " << token_symbol._value << " } is a: " << base;
     return os;
 }

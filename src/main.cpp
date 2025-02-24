@@ -4,6 +4,8 @@
 
 #include "main.h"
 
+#include <token_error.h>
+
 #include "qurio_lexer.h"
 
 int main() {
@@ -12,11 +14,7 @@ int main() {
 
     std::queue< Token * >tokens;
 
-    try {
-        Qurio_Lexer::tokenizer( f_name, tokens );
-    } catch( Type_Missmatch_Exception tme ) {
-        PRINT_ERROR( tme.what(), "at", tme.get_row(), tme.get_col() );
-    }
+    Qurio_Lexer::tokenizer( f_name, tokens );
 
     PRINT_DEBUG( tokens.size() );
 
@@ -25,13 +23,18 @@ int main() {
         Token * token = tokens.front();
         tokens.pop();
 
+        if( token->get_type() == ERROR_TYPE ) {
+            const auto * token_error = dynamic_cast< Token_Error * > ( token );
+            PRINT_ERROR( * token_error );
+        }
+
         if( token->get_type() == DELIMITER ) {
-            auto * token_delimiter = dynamic_cast< Token_Delimiter * > ( token );
+            const auto * token_delimiter = dynamic_cast< Token_Delimiter * > ( token );
             PRINT_DEBUG( * token_delimiter );
         }
 
         if( token->get_type() == NUMBER ) {
-            auto * token_number = dynamic_cast< Token_Number * > ( token );
+            const auto * token_number = dynamic_cast< Token_Number * > ( token );
             PRINT_DEBUG( * token_number );
         }
 

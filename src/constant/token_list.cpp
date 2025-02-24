@@ -26,9 +26,9 @@ std::unordered_set< char > Token_List::symbol_list = {
     ';',
     ':',
     '\"',
-    // '\'',    // Skipped due to this is allowed in number
+    '\'',
     ',',
-    // '.',     // Skipped due to this is allowed in number
+    '.',
     '<',
     '>',
     '/',

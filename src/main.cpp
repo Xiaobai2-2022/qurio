@@ -43,6 +43,11 @@ int main() {
             PRINT_DEBUG( * token_number );
         }
 
+        if( token->get_type() == STRING || token->get_type() == CHAR ) {
+            const auto * token_string = dynamic_cast< Token_String * > ( token );
+            PRINT_DEBUG( * token_string );
+        }
+
         delete token;
 
     }

@@ -1,3 +1,11 @@
 if(erw + rwer > 3'3.2){
+    string str = "wrw";
+    string other_str = "wer
+    ";
+    string str3 = "wew";
+    str3 += 'w';
+    str4 += '\23';
+    str4 += '52';
+    str4 += ' ;
     return rwe*4.3a;
 }

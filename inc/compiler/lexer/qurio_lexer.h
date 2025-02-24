@@ -31,6 +31,14 @@ class Qurio_Lexer {
             const unsigned long &, unsigned long &,
             std::fstream &, char &, std::queue< Token * > & );
 
+        static void get_token_string_helper(
+            unsigned long &, unsigned long &,
+            std::fstream &, char &, std::queue< Token * > & );
+
+        static void get_token_char_helper(
+            unsigned long &, unsigned long &,
+            std::fstream &, char &, std::queue< Token * > & );
+
     public:
         static void tokenizer( const std::string &, std::queue< Token * > & );
 

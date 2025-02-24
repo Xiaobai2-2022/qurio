@@ -13,6 +13,7 @@ enum Parsed_Lex_Type {
     NUMBER,
     OPERATOR,
     STRING,
+    CHAR,
 
 }; // enum Parsed_Lex_Type
 

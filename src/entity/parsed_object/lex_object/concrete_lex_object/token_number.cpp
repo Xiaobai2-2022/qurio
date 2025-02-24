@@ -18,8 +18,12 @@ Token_Number::Token_Number( const unsigned long & row, const unsigned long & col
             "in parse_token_number.cpp",
             "in Token_Number::Token_Number( const unsigned long &, const unsigned long &, const Parsed_Lex_Type, const std::string & )."
         );
+
+        std::string error_msg = "Invalid token, \"";
+        error_msg += value;
+        error_msg += "\" is not a valid number";
         throw Type_Missmatch_Exception{
-            "Invalid Token",
+            error_msg,
             this->_row,
             this->_col
         };

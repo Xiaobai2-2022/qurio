@@ -6,6 +6,7 @@
 
 #include <token_error.h>
 #include <token_operator.h>
+#include <token_string.h>
 
 #include "token_delimiter.h"
 #include "token_identifier.h"
@@ -38,8 +39,8 @@ void Qurio_Lexer::tokenizer( const std::string & f_name, std::queue<Token *> & t
     LEXER_DEBUG( LEXER_FILE_OPEN, f_name );
     LEXER_DEBUG( LEXER_START_SCAN );
 
-    unsigned long row = 0;
-    unsigned long col = 0;
+    unsigned long row = 1;
+    unsigned long col = 1;
 
     char next_char;
 
@@ -60,7 +61,7 @@ void Qurio_Lexer::tokenizer( const std::string & f_name, std::queue<Token *> & t
         {
             fs.get( next_char );
             ++row;
-            col = 0;
+            col = 1;
             continue;
         }
 
@@ -94,13 +95,19 @@ void Qurio_Lexer::get_token_helper(
     if( Token_List::delimiter_list.contains( cur_char ) ) {
         Qurio_Lexer::get_token_delimiter_helper( row, col, fs, cur_char, tokens );
     } else if( Token_List::symbol_list.contains( cur_char ) ) {
-        Qurio_Lexer::get_token_operator_helper( row, col, fs, cur_char, tokens );
+        if( cur_char == '\'' || cur_char == '\"' )
+            try {
+                Qurio_Lexer::get_token_string_helper( row, col, fs, cur_char, tokens );
+            } catch( std::exception & tme ) {
+                LEXER_ERROR( LEXER_ERROR_CAUGHT, tme.what(), "at Qurio_Lexer::get_token_helper." );
+            }
+        else
+            Qurio_Lexer::get_token_operator_helper( row, col, fs, cur_char, tokens );
     } else if( cur_char >= '0' && cur_char <= '9' ) {
         try {
             Qurio_Lexer::get_token_number_helper( row, col, fs, cur_char, tokens );
         } catch( std::exception & tme ) {
             LEXER_ERROR( LEXER_ERROR_CAUGHT, tme.what(), "at Qurio_Lexer::get_token_helper." );
-            // throw;
         }
     }
     else {
@@ -132,8 +139,8 @@ void Qurio_Lexer::get_token_number_helper(
 
     while( !fs.eof() &&
         ( !Token_List::symbol_list.contains( cur_char ) ||
-            cur_char == '\'' || cur_char == '.'
-        ) ) {
+        cur_char == '\'' || cur_char == '.' ) &&
+        cur_char != ' ' && cur_char != '\n' ) {
         cur_number += cur_char;
         fs.get( cur_char );
         ++cur_col;
@@ -160,7 +167,6 @@ void Qurio_Lexer::get_token_operator_helper(
     unsigned long cur_col = col;
 
     std::string cur_operator;
-
     std::string updated_operator;
 
     do {
@@ -170,11 +176,72 @@ void Qurio_Lexer::get_token_operator_helper(
         ++cur_col;
     } while( !fs.eof() &&
         Token_List::symbol_list.contains( cur_char ) &&
-        Token_List::operator_list.contains( updated_operator ));
+        Token_List::operator_list.contains( updated_operator ) );
 
     auto * token = new Token_Operator { row, col, Token_List::operator_list[ cur_operator ] };
     tokens.push( token );
 
     col = cur_col;
 
-}
+} // get_token_operator_helper
+
+void Qurio_Lexer::get_token_string_helper(
+    unsigned long & row, unsigned long & col,
+    std::fstream & fs, char & cur_char, std::queue< Token * > & tokens ) {
+
+    unsigned long cur_col = col;
+
+    const bool is_char = cur_char == '\'';
+
+    std::string cur_string;
+    std::string updated_string;
+
+    do {
+        cur_string = updated_string;
+        updated_string += cur_char;
+        fs.get( cur_char );
+        ++cur_col;
+    } while( !fs.eof() &&
+        cur_char != '\n' &&
+        !( is_char && cur_char == '\'' ) &&
+        !( !is_char && cur_char == '\"' ));
+
+    if( cur_char == '\n' || ( is_char && cur_string.size() != 3 ) )
+    {
+        try {
+            cur_string = updated_string;
+            if( cur_char != '\n' ) {
+                cur_string += cur_char;
+                fs.get( cur_char );
+                ++cur_col;
+            }
+
+            std::string error_msg = "Invalid token, \"";
+            error_msg += cur_string;
+            error_msg += "\" is not a valid ";
+            error_msg += (is_char ? "char" : "string");
+            throw Type_Missmatch_Exception{
+                error_msg,
+                row,
+                col
+            };
+        } catch ( Type_Missmatch_Exception & tme ) {
+            tokens.push( new Token_Error{ row, col, tme.what() } );
+            LEXER_ERROR( LEXER_THROW, tme.what(), "at Qurio_Lexer::get_token_string_helper." );
+            col = cur_col;
+            throw;
+        }
+    }
+
+    cur_string = updated_string;
+    cur_string += cur_char;
+    fs.get( cur_char );
+    ++cur_col;
+
+    auto * token = new Token_String { row, col,
+        (is_char ? CHAR : STRING), cur_string };
+    tokens.push( token );
+
+    col = cur_col;
+
+} // get_token_string_helper

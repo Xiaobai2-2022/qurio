@@ -6,6 +6,7 @@
 
 #include <qurio_string.h>
 #include <token_error.h>
+#include <token_keyword.h>
 #include <token_operator.h>
 #include <token_string.h>
 
@@ -110,10 +111,8 @@ void Qurio_Lexer::get_token_helper(
         } catch( std::exception & tme ) {
             LEXER_ERROR( LEXER_ERROR_CAUGHT, tme.what(), "at Qurio_Lexer::get_token_helper." );
         }
-    }
-    else {
-        fs.get( cur_char );
-        ++col;
+    } else {
+        Qurio_Lexer::get_token_identifier_helper( row, col, fs, cur_char, tokens );
     }
 
 } // get_token_helper
@@ -171,8 +170,8 @@ void Qurio_Lexer::get_token_operator_helper(
     std::string updated_operator;
 
     do {
-        cur_operator = updated_operator;
         updated_operator += cur_char;
+        cur_operator = updated_operator;
         fs.get( cur_char );
         ++cur_col;
     } while( !fs.eof() &&
@@ -187,7 +186,7 @@ void Qurio_Lexer::get_token_operator_helper(
 } // get_token_operator_helper
 
 void Qurio_Lexer::get_token_string_helper(
-    unsigned long & row, unsigned long & col,
+    const unsigned long & row, unsigned long & col,
     std::fstream & fs, char & cur_char, std::queue< Token * > & tokens ) {
 
     unsigned long cur_col = col;
@@ -242,3 +241,37 @@ void Qurio_Lexer::get_token_string_helper(
     col = cur_col;
 
 } // get_token_string_helper
+
+void Qurio_Lexer::get_token_identifier_helper(
+    const unsigned long & row, unsigned long & col,
+    std::fstream & fs, char & cur_char, std::queue< Token * > & tokens ) {
+
+    unsigned long cur_col = col;
+
+    const bool is_char = cur_char == '\'';
+
+    std::string cur_string;
+
+    do {
+        cur_string += cur_char;
+        fs.get( cur_char );
+        ++cur_col;
+    } while( !fs.eof() &&
+        cur_char != '\n' &&
+        cur_char != ' ' &&
+        !Token_List::symbol_list.contains( cur_char )
+        );
+
+    if( Token_List::keyword_list.contains( cur_string ) ) {
+        auto * token = new Token_Keyword { row, col,
+            Token_List::keyword_list[ cur_string ] };
+        tokens.push( token );
+    } else {
+        auto * token = new Token_Identifier { row, col,
+            cur_string };
+        tokens.push( token );
+    }
+
+    col = cur_col;
+
+} // get_token_identifier_helper

@@ -13,7 +13,7 @@ class Token_Keyword final : public Token {
 
     public:
         Token_Keyword( const unsigned long &, const unsigned long &,
-            const Parsed_Lex_Type &, const QURIO_Keyword & ) noexcept;
+            const QURIO_Keyword & ) noexcept;
         ~Token_Keyword() noexcept override = default;
 
     public:

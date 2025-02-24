@@ -33,6 +33,16 @@ int main() {
             PRINT_DEBUG( * token_delimiter );
         }
 
+        if( token->get_type() == KEYWORD ) {
+            const auto * token_keyword = dynamic_cast< Token_Keyword * > ( token );
+            PRINT_DEBUG( * token_keyword );
+        }
+
+        if( token->get_type() == IDENTIFIER ) {
+            const auto * token_identifier = dynamic_cast< Token_Identifier * > ( token );
+            PRINT_DEBUG( * token_identifier );
+        }
+
         if( token->get_type() == NUMBER ) {
             const auto * token_number = dynamic_cast< Token_Number * > ( token );
             PRINT_DEBUG( * token_number );

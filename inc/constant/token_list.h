@@ -21,5 +21,6 @@ class Token_List {
     public:
         static std::unordered_map< char, QURIO_Delimiter > delimiter_list;
         static std::unordered_map< std::string, QURIO_Operator > operator_list;
+        static std::unordered_map< std::string, QURIO_Keyword > keyword_list;
 
 }; // class Token_List <- static

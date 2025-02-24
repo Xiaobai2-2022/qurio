@@ -120,3 +120,28 @@ std::unordered_map< std::string, QURIO_Operator > Token_List::operator_list = {
     {"`", OPERATOR_BACKTICK },
 
 };
+
+std::unordered_map< std::string, QURIO_Keyword > Token_List::keyword_list = {
+
+    { "break", KEY_CONTROL_BREAK },
+    { "case", KEY_CONTROL_CASE },
+    { "continue", KEY_CONTROL_CONTINUE },
+    { "do", KEY_CONTROL_DO },
+    { "else", KEY_CONTROL_ELSE },
+    { "if", KEY_CONTROL_IF },
+    { "for", KEY_CONTROL_FOR },
+    { "switch", KEY_CONTROL_SWITCH },
+    { "while", KEY_CONTROL_WHILE },
+    { "return", KEY_CONTROL_RETURN },
+
+    { "any", KEY_DATATYPE_ANY },
+    { "boolean", KEY_DATATYPE_BOOLEAN },
+    { "char", KEY_DATATYPE_CHARACTER },
+    { "double", KEY_DATATYPE_DOUBLE_FLOAT },
+    { "float", KEY_DATATYPE_FLOAT },
+    { "int", KEY_DATATYPE_INTEGER },
+    { "long", KEY_DATATYPE_LONG_INTEGER },
+    { "unsigned", KEY_DATATYPE_UNSIGNED },
+    { "string", KEY_DATATYPE_STRING },
+
+};

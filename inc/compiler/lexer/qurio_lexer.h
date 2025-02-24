@@ -11,8 +11,8 @@
 
 class Qurio_Lexer {
 
-    private:
-        Qurio_Lexer();
+    public:
+        Qurio_Lexer() = delete;
 
     private:
         static void get_token_helper(
@@ -32,11 +32,11 @@ class Qurio_Lexer {
             std::fstream &, char &, std::queue< Token * > & );
 
         static void get_token_string_helper(
-            unsigned long &, unsigned long &,
+            const unsigned long &, unsigned long &,
             std::fstream &, char &, std::queue< Token * > & );
 
-        static void get_token_char_helper(
-            unsigned long &, unsigned long &,
+        static void get_token_identifier_helper(
+            const unsigned long &, unsigned long &,
             std::fstream &, char &, std::queue< Token * > & );
 
     public:

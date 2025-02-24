@@ -29,6 +29,7 @@ enum QURIO_Keyword {
     KEY_CONTROL_FOR,                        // for
     KEY_CONTROL_SWITCH,                     // switch
     KEY_CONTROL_WHILE,                      // while
+    KEY_CONTROL_RETURN,                     // return
 
     // datatypes
     KEY_DATATYPE_ANY,                       // any
@@ -38,10 +39,8 @@ enum QURIO_Keyword {
     KEY_DATATYPE_FLOAT,                     // float
     KEY_DATATYPE_INTEGER,                   // int
     KEY_DATATYPE_LONG_INTEGER,              // long
-    KEY_DATATYPE_UNSIGNED_DOUBLE_FLOAT,     // unsigned double
-    KEY_DATATYPE_UNSIGNED_FLOAT,            // unsigned float
-    KEY_DATATYPE_UNSIGNED_INTEGER,          // unsigned int
-    KEY_DATATYPE_UNSIGNED_LONG_INTEGER,     // unsigned long
+    KEY_DATATYPE_UNSIGNED,                  // unsigned
+    KEY_DATATYPE_STRING,                    // string
 
 }; // enum QURIO_Keyword
 

@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "log_level.h"
 
 // Base case

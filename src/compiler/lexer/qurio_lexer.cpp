@@ -4,6 +4,7 @@
 
 #include "qurio_lexer.h"
 
+#include <qurio_string.h>
 #include <token_error.h>
 #include <token_operator.h>
 #include <token_string.h>
@@ -206,19 +207,20 @@ void Qurio_Lexer::get_token_string_helper(
         !( is_char && cur_char == '\'' ) &&
         !( !is_char && cur_char == '\"' ));
 
-    if( cur_char == '\n' || ( is_char && cur_string.size() != 3 ) )
+    cur_string = updated_string;
+
+    if( !fs.eof() && cur_char != '\n' ) {
+        cur_string += cur_char;
+        fs.get( cur_char );
+        ++cur_col;
+    }
+
+    if( cur_char == '\n' || ( is_char && !Qurio_String::is_valid_char( cur_string ) ) )
     {
         try {
-            cur_string = updated_string;
-            if( cur_char != '\n' ) {
-                cur_string += cur_char;
-                fs.get( cur_char );
-                ++cur_col;
-            }
-
-            std::string error_msg = "Invalid token, \"";
+            std::string error_msg = "Invalid token, ";
             error_msg += cur_string;
-            error_msg += "\" is not a valid ";
+            error_msg += " is not a valid ";
             error_msg += (is_char ? "char" : "string");
             throw Type_Missmatch_Exception{
                 error_msg,
@@ -232,11 +234,6 @@ void Qurio_Lexer::get_token_string_helper(
             throw;
         }
     }
-
-    cur_string = updated_string;
-    cur_string += cur_char;
-    fs.get( cur_char );
-    ++cur_col;
 
     auto * token = new Token_String { row, col,
         (is_char ? CHAR : STRING), cur_string };

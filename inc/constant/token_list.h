@@ -12,8 +12,8 @@
 
 class Token_List {
 
-    private:
-        Token_List();
+    public:
+        Token_List() = delete;
 
     public:
         static std::unordered_set< char > symbol_list;

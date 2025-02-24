@@ -15,7 +15,7 @@ std::any Token_Identifier::get_value() const noexcept {
 std::ostream & operator<<( std::ostream & os, const Token_Identifier & token_identifier) noexcept {
 
     const Token & base = token_identifier;
-    os << "Token Number: { Type: " << token_identifier._type <<
+    os << "Token Identifier: { Type: " << token_identifier._type <<
         ", Value: " << token_identifier._value << " } is a: " << base;
     return os;
 

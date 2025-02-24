@@ -60,59 +60,64 @@ enum QURIO_Delimiter {
 
 enum QURIO_Operator {
 
-    OPERATOR_ARTH_ADDITION,                   // +
-    OPERATOR_ARTH_SUBTRACTION,                // -
-    OPERATOR_ARTH_MULTIPLICATION,             // *
-    OPERATOR_ARTH_DIVISION,                   // /
-    OPERATOR_ARTH_MODULUS,                    // %
-    OPERATOR_ARTH_POWER,                      // **
+    OPERATOR_ARTH_ADDITION,                     // +
+    OPERATOR_ARTH_SUBTRACTION,                  // -
+    OPERATOR_ARTH_MULTIPLICATION,               // *
+    OPERATOR_ARTH_DIVISION,                     // /
+    OPERATOR_ARTH_MODULUS,                      // %
+    OPERATOR_ARTH_POWER,                        // **
 
-    OPERATOR_PLUS_PLUS,                       // ++
-    OPERATOR_MINUS_MINUS,                     // --
+    OPERATOR_PLUS_PLUS,                         // ++
+    OPERATOR_MINUS_MINUS,                       // --
 
-    OPERATOR_ASSIGNMENT,                      // =
+    OPERATOR_ASSIGNMENT,                        // =
 
-    OPERATOR_COMP_LESSER,                     // <
-    OPERATOR_COMP_LESSEREQ,                   // <=
-    OPERATOR_COMP_EQUAL,                      // ==
-    OPERATOR_COMP_NOTEQUAL,                   // !=
-    OPERATOR_COMP_GREATEREQ,                  // >=
-    OPERATOR_COMP_GREATER,                    // >
+    OPERATOR_COMP_LESSER,                       // <
+    OPERATOR_COMP_LESSEREQ,                     // <=
+    OPERATOR_COMP_EQUAL,                        // ==
+    OPERATOR_COMP_NOTEQUAL,                     // !=
+    OPERATOR_COMP_GREATEREQ,                    // >=
+    OPERATOR_COMP_GREATER,                      // >
 
-    OPERATOR_LOGICAL_AND,                     // &&
-    OPERATOR_LOGICAL_OR,                      // ||
-    OPERATOR_LOGICAL_NOT,                     // !
+    OPERATOR_LOGICAL_AND,                       // &&
+    OPERATOR_LOGICAL_OR,                        // ||
+    OPERATOR_LOGICAL_NOT,                       // !
 
-    OPERATOR_BITWISE_AND,                     // &
-    OPERATOR_BITWISE_OR,                      // |
-    OPERATOR_BITWISE_XOR,                     // ^
-    OPERATOR_BITWISE_NOT,                     // ~
+    OPERATOR_BITWISE_AND,                       // &
+    OPERATOR_BITWISE_OR,                        // |
+    OPERATOR_BITWISE_XOR,                       // ^
+    OPERATOR_BITWISE_NOT,                       // ~
 
-    OPERATOR_BITWISE_LSHIFT,                  // <<
-    OPERATOR_BITWISE_RSHIFT,                  // >>
+    OPERATOR_BITWISE_LSHIFT,                    // <<
+    OPERATOR_BITWISE_RSHIFT,                    // >>
 
-    OPERATOR_ASSN_ADDITION,                   // +=
-    OPERATOR_ASSN_SUBTRACTION,                // -=
-    OPERATOR_ASSN_MULTIPLICATION,             // *=
-    OPERATOR_ASSN_DIVISION,                   // /=
-    OPERATOR_ASSN_MODULUS,                    // %=
-    OPERATOR_ASSN_POWER,                      // **=
+    OPERATOR_ASSN_ADDITION,                     // +=
+    OPERATOR_ASSN_SUBTRACTION,                  // -=
+    OPERATOR_ASSN_MULTIPLICATION,               // *=
+    OPERATOR_ASSN_DIVISION,                     // /=
+    OPERATOR_ASSN_MODULUS,                      // %=
+    OPERATOR_ASSN_POWER,                        // **=
 
-    OPERATOR_ASSN_BITWISE_AND,                // &=
-    OPERATOR_ASSN_BITWISE_OR,                 // |=
-    OPERATOR_ASSN_BITWISE_XOR,                // ^=
-    OPERATOR_ASSN_BITWISE_NOT,                // ~=
-    OPERATOR_ASSN_BITWISE_LSHIFT,             // <<=
-    OPERATOR_ASSN_BITWISE_RSHIFT,             // >>=
+    OPERATOR_ASSN_BITWISE_AND,                  // &=
+    OPERATOR_ASSN_BITWISE_OR,                   // |=
+    OPERATOR_ASSN_BITWISE_XOR,                  // ^=
+    OPERATOR_ASSN_BITWISE_NOT,                  // ~=
+    OPERATOR_ASSN_BITWISE_LSHIFT,               // <<=
+    OPERATOR_ASSN_BITWISE_RSHIFT,               // >>=
 
-    OPERATOR_TERNARY_COND,                    // ?
-    OPERATOR_TERNARY_OR,                      // :
+    OPERATOR_TERNARY_COND,                      // ?
+    OPERATOR_TERNARY_OR,                        // :
 
-    OPERATOR_ACCESS,                          // .
-    OPERATOR_ACCESS_PTR,                      // ->
+    OPERATOR_ACCESS,                            // .
+    OPERATOR_ACCESS_PTR,                        // ->
 
-    OPERATOR_ESCAPE,                          // \
+    OPERATOR_ESCAPE,                            // \
 
-    OPERATOR_REGISTER,                        // $
+    OPERATOR_COMMENT,                           // //
+
+    OPERATOR_AT,                                // @
+    OPERATOR_HASH,                              // #
+    OPERATOR_REGISTER,                          // $
+    OPERATOR_BACKTICK,                          // `
 
 }; // enum QURIO_Symbol

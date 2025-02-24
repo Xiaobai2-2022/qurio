@@ -13,7 +13,7 @@ private:
 
 public:
     Token_Operator( const unsigned long &, const unsigned long &,
-        const Parsed_Lex_Type &, const QURIO_Operator & ) noexcept;
+        const QURIO_Operator & ) noexcept;
     ~Token_Operator() noexcept override = default;
 
 public:

@@ -4,6 +4,7 @@
 
 # pragma once
 
+#include <string>
 #include <unordered_map>
 #include <unordered_set>
 
@@ -19,5 +20,6 @@ class Token_List {
 
     public:
         static std::unordered_map< char, QURIO_Delimiter > delimiter_list;
+        static std::unordered_map< std::string, QURIO_Operator > operator_list;
 
 }; // class Token_List <- static

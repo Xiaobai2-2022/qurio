@@ -20,10 +20,14 @@ class Qurio_Lexer {
             std::fstream &, char &, std::queue< Token * > & );
 
         static void get_token_delimiter_helper(
-            const unsigned long &, const unsigned long &,
-            const char &, std::queue< Token * > & );
+            const unsigned long &, unsigned long &,
+            std::fstream &, char &, std::queue< Token * > & );
 
         static void get_token_number_helper(
+            const unsigned long &, unsigned long &,
+            std::fstream &, char &, std::queue< Token * > & );
+
+        static void get_token_operator_helper(
             const unsigned long &, unsigned long &,
             std::fstream &, char &, std::queue< Token * > & );
 

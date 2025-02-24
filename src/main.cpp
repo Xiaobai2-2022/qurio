@@ -38,6 +38,11 @@ int main() {
             PRINT_DEBUG( * token_number );
         }
 
+        if( token->get_type() == OPERATOR ) {
+            const auto * token_number = dynamic_cast< Token_Operator * > ( token );
+            PRINT_DEBUG( * token_number );
+        }
+
         delete token;
 
     }

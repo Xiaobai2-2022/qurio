@@ -4,7 +4,9 @@
 
 #pragma once
 
-#include "debug_level.h"
+#include <iostream>
+
+#include "log_level.h"
 
 // Base case
 void inline log_args(std::ostream & os) {

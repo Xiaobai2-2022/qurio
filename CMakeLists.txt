@@ -19,7 +19,10 @@ add_executable( qurio_executable ${SOURCES} )
 include_directories(
 
         inc
+            inc/compiler
+                inc/compiler/lexer
             inc/constant
+                inc/constant/output_msg
             inc/entity
                 inc/entity/parsed_object
                 inc/entity/parsed_object/lex_object

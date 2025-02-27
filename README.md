@@ -16,6 +16,7 @@
 - [Contributing](#-contributing)
 - [License](#-license)
 - [Contact](#-contact)
+- [Credits](#-collaborator)
 
 ## 📖 About
 qurio-C is an open-source compiler designed to compile a C/C++-like language into RISC-V assembly, enabling low-level code generation for RISC-V architectures.
@@ -81,7 +82,16 @@ Contributions are welcome! Follow these steps:
 To be provided
 
 ## 📬 Contact
-- **Project Manager / Lead Programmer:** Zhifan (Xiaobai2-2022)
+- **Project Manager / Lead Developer:** Zhifan (Xiaobai2-2022)
 - **Email:** Z2367LI [at] UWATERLOO [dot] CA
 - **GitHub:** [Xiaobai2-2022](https://github.com/Xiaobai2-2022)
 
+## 🎖️ Collaborator
+
+- **Project Manager / Lead Developer:** Zhifan Li (Xiaobai2-2022)
+- **Email:** Z2367LI [at] UWATERLOO [dot] CA
+- **GitHub:** [Xiaobai2-2022](https://github.com/Xiaobai2-2022)
+---
+- **Quality Assurance / Software Developer** Andy Yan
+- **Email:** y627396566 [at] gmail [dot] com
+- **GitHub:** [627396566](https://github.com/627396566)

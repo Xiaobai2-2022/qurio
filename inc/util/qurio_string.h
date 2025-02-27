@@ -10,6 +10,9 @@
 class Qurio_String final {
 
     public:
+        Qurio_String() = delete;
+
+    public:
         static bool is_valid_number( const std::string & );
         static bool is_valid_char( const std::string & );
         static bool is_valid_string( const std::string & );

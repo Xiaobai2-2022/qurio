@@ -105,7 +105,6 @@ void Qurio_Lexer::get_token_helper(
             }
         else
             Qurio_Lexer::get_token_operator_helper( row, col, fs, cur_char, tokens );
-            LEXER_WARN( row, col );
     } else if( cur_char >= '0' && cur_char <= '9' ) {
         try {
             Qurio_Lexer::get_token_number_helper( row, col, fs, cur_char, tokens );
@@ -186,7 +185,6 @@ void Qurio_Lexer::get_token_operator_helper(
     // Check for comment
     if( opr == OPERATOR_COMMENT ) {
         while( !fs.eof() && cur_char != '\n' ) fs.get( cur_char );
-        LEXER_WARN( row, col );
         return;
     }
     if( opr == OPERATOR_COMMENT_LONG_OPENING ) {

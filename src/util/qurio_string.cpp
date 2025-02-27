@@ -31,7 +31,7 @@ bool Qurio_String::is_valid_char( const std::string & token ) {
 
     if( token.at( 0 ) != '\'' || token.at( length - 1 ) != '\'' ) return false;
 
-    if( token.size() == 3 ) {
+    if( length == 3 ) {
         if ( token.at( 1 ) != '\'' && token.at( 1 ) != '\\' ) return true;
         return false;
     }
@@ -40,13 +40,13 @@ bool Qurio_String::is_valid_char( const std::string & token ) {
 
     // Oct
     if ( token.at( 2 ) >= '0' && token.at( 2 ) <= '7' ) {
-        if( token.size() == 4 ) return true;
+        if( length == 4 ) return true;
 
         if ( token.at( 3 ) >= '0' && token.at( 3 ) <= '7' ) {
-            if( token.size() == 5 ) return true;
+            if( length == 5 ) return true;
 
             if ( token.at( 4 ) >= '0' && token.at( 4 ) <= '7' ) {
-                if( token.size() == 6 ) return true;
+                if( length == 6 ) return true;
             }
         }
 
@@ -55,19 +55,19 @@ bool Qurio_String::is_valid_char( const std::string & token ) {
     }
 
     if( token.at( 2 ) == 'x' ) {
-        if( token.size() != 6 ) return false;
-        if (
-            (( token.at( 3 ) >= '0' && token.at( 3 ) <= '9' ) ||
+        if( length != 6 ) return false;
+        if ( (
+            ( token.at( 3 ) >= '0' && token.at( 3 ) <= '9' ) ||
             ( token.at( 3 ) >= 'a' && token.at( 3 ) <= 'f' ) ||
-            ( token.at( 3 ) >= 'A' && token.at( 3 ) <= 'F' )) &&
-            (( token.at( 4 ) >= '0' && token.at( 4 ) <= '9' ) ||
+            ( token.at( 3 ) >= 'A' && token.at( 3 ) <= 'F' ) ) && (
+            ( token.at( 4 ) >= '0' && token.at( 4 ) <= '9' ) ||
             ( token.at( 4 ) >= 'a' && token.at( 4 ) <= 'f' ) ||
-            ( token.at( 4 ) >= 'A' && token.at( 4 ) <= 'F' ))
-            ) return true;
+            ( token.at( 4 ) >= 'A' && token.at( 4 ) <= 'F' )
+            ) ) return true;
         return false;
     }
 
-    if( token.size() == 4 ) {
+    if( length == 4 ) {
         return
             token.at( 2 ) == 'n' ||
             token.at( 2 ) == 't' ||
@@ -84,6 +84,47 @@ bool Qurio_String::is_valid_char( const std::string & token ) {
     return false;
 
 }
+
+bool Qurio_String::is_valid_string( const std::string & token) {
+
+    if( token.at( 0 ) != '\"' || token.at( token.size() - 1 ) != '\"' ) return false;
+    for( auto c = token.begin(); c != token.end(); ++c ) {
+        if( *c == '\\' ) {
+            if( ++c == token.end() ) return false;
+            if( *c == 'x')
+            {
+                if( ++c == token.end() ) return false;
+                const char hex_1st = *c;
+                if( ++c == token.end() ) return false;
+                const char hex_2nd = *c;
+                if ( ! (
+                    ( hex_1st >= '0' && hex_1st <= '9' ) ||
+                    ( hex_1st >= 'a' && hex_1st <= 'f' ) ||
+                    ( hex_1st >= 'A' && hex_1st <= 'F' ) ) && (
+                    ( hex_2nd >= '0' && hex_2nd <= '9' ) ||
+                    ( hex_2nd >= 'a' && hex_2nd <= 'f' ) ||
+                    ( hex_2nd >= 'A' && hex_2nd <= 'F' )
+                    ) ) return false;
+            } else if ( const char escaped = *c; ! (
+                escaped == 'n' ||
+                escaped == 't' ||
+                escaped == 'r' ||
+                escaped == 'b' ||
+                escaped == 'f' ||
+                escaped == 'v' ||
+                escaped == 'a' ||
+                escaped == '\'' ||
+                escaped == '\"' ||
+                escaped == '\\' || (
+                escaped >= '0' && escaped <= '7'
+                ) ) ) return false;
+        }
+    }
+
+    return true;
+
+}
+
 
 bool Qurio_String::is_last_quote( const std::string & token ) {
 

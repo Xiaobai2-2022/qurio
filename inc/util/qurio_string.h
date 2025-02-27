@@ -12,6 +12,7 @@ class Qurio_String final {
     public:
         static bool is_valid_number( const std::string & );
         static bool is_valid_char( const std::string & );
+        static bool is_valid_string( const std::string & );
         static bool is_last_quote( const std::string & );
 
 }; // class Qurio_String <- Static

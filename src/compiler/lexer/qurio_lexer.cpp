@@ -213,9 +213,9 @@ void Qurio_Lexer::get_token_string_helper(
         ++cur_col;
     }
 
-    PRINT_WARN ( cur_string, Qurio_String::is_last_quote( cur_string ) );
-
-    if( !Qurio_String::is_last_quote( cur_string ) || ( is_char && !Qurio_String::is_valid_char( cur_string ) ) ) {
+    if( !Qurio_String::is_last_quote( cur_string )
+        || ( is_char && !Qurio_String::is_valid_char( cur_string ) )
+        || ( !is_char && !Qurio_String::is_valid_string( cur_string ))) {
 
         try {
             std::string error_msg = "Invalid token, ";
@@ -235,6 +235,8 @@ void Qurio_Lexer::get_token_string_helper(
         }
 
     }
+
+    Qurio_String::is_valid_string( cur_string );
 
     auto * token = new Token_String { row, col,
         (is_char ? CHAR : STRING), cur_string };

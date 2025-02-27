@@ -14,5 +14,7 @@ if(erw + rwer > 3'3.2){
     '\x231';
     '\x23';
     "{\";"
+    ""ewe"ds"
+    "\u"
     return rwe*4.3a;
 }

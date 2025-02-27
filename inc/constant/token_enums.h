@@ -114,6 +114,8 @@ enum QURIO_Operator {
     OPERATOR_ESCAPE,                            // \
 
     OPERATOR_COMMENT,                           // //
+    OPERATOR_COMMENT_LONG_OPENING,              // /*
+    // OPERATOR_COMMENT_LONG_CLOSING,              // */
 
     OPERATOR_AT,                                // @
     OPERATOR_HASH,                              // #

@@ -8,8 +8,8 @@
 
 #define LEXER_DEBUG(...) \
   PRINT_DEBUG( "[Lexer]\t", __VA_ARGS__ )
-#define LEXER_WARNING(...) \
-  LEXER_WARNING( "[Lexer]\t", __VA_ARGS__ )
+#define LEXER_WARN(...) \
+  PRINT_WARN( "[Lexer]\t", __VA_ARGS__ )
 #define LEXER_ERROR(...) \
   PRINT_ERROR( "[Lexer]\t", __VA_ARGS__ )
 #define LEXER_INFO(...) \

@@ -110,6 +110,7 @@ std::unordered_map< std::string, QURIO_Operator > Token_List::operator_list = {
     { "\\", OPERATOR_ESCAPE },
 
     { "//", OPERATOR_COMMENT },
+    { "/*", OPERATOR_COMMENT_LONG_OPENING },
 
     { "@", OPERATOR_AT },
 

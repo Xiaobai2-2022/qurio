@@ -105,6 +105,7 @@ void Qurio_Lexer::get_token_helper(
             }
         else
             Qurio_Lexer::get_token_operator_helper( row, col, fs, cur_char, tokens );
+            LEXER_WARN( row, col );
     } else if( cur_char >= '0' && cur_char <= '9' ) {
         try {
             Qurio_Lexer::get_token_number_helper( row, col, fs, cur_char, tokens );
@@ -161,7 +162,7 @@ void Qurio_Lexer::get_token_number_helper(
 } // get_token_number_helper
 
 void Qurio_Lexer::get_token_operator_helper(
-    const unsigned long & row, unsigned long & col,
+    unsigned long & row, unsigned long & col,
     std::fstream & fs, char & cur_char, std::queue< Token * > & tokens ) {
 
     unsigned long cur_col = col;
@@ -169,14 +170,43 @@ void Qurio_Lexer::get_token_operator_helper(
     std::string cur_operator;
     std::string updated_operator;
 
+    updated_operator += cur_char;
+
     do {
-        updated_operator += cur_char;
-        cur_operator = updated_operator;
         fs.get( cur_char );
         ++cur_col;
+        cur_operator = updated_operator;
+        updated_operator += cur_char;
     } while( !fs.eof() &&
         Token_List::symbol_list.contains( cur_char ) &&
         Token_List::operator_list.contains( updated_operator ) );
+
+    const QURIO_Operator opr = Token_List::operator_list[ cur_operator ];
+
+    // Check for comment
+    if( opr == OPERATOR_COMMENT ) {
+        while( !fs.eof() && cur_char != '\n' ) fs.get( cur_char );
+        LEXER_WARN( row, col );
+        return;
+    }
+    if( opr == OPERATOR_COMMENT_LONG_OPENING ) {
+        while( !fs.eof() ) {
+            if( cur_char == '\n' ) {
+                fs.get( cur_char );
+                ++row;
+                col = 1;
+                continue;
+            }
+            const char first = cur_char;
+            fs.get( cur_char );
+            ++col;
+            if( first == '*' && cur_char == '/' ) {
+                fs.get( cur_char );
+                ++col;
+                return;
+            }
+        }
+    }
 
     auto * token = new Token_Operator { row, col, Token_List::operator_list[ cur_operator ] };
     tokens.push( token );

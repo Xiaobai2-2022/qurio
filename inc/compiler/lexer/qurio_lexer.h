@@ -28,7 +28,7 @@ class Qurio_Lexer {
             std::fstream &, char &, std::queue< Token * > & );
 
         static void get_token_operator_helper(
-            const unsigned long &, unsigned long &,
+            unsigned long &, unsigned long &,
             std::fstream &, char &, std::queue< Token * > & );
 
         static void get_token_string_helper(

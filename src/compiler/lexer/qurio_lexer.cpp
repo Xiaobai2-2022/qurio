@@ -203,8 +203,7 @@ void Qurio_Lexer::get_token_string_helper(
         ++cur_col;
     } while( !fs.eof() &&
         cur_char != '\n' &&
-        !( is_char && cur_char == '\'' ) &&
-        !( !is_char && cur_char == '\"' ));
+        !Qurio_String::is_last_quote( updated_string + cur_char ) );
 
     cur_string = updated_string;
 
@@ -214,8 +213,10 @@ void Qurio_Lexer::get_token_string_helper(
         ++cur_col;
     }
 
-    if( cur_char == '\n' || ( is_char && !Qurio_String::is_valid_char( cur_string ) ) )
-    {
+    PRINT_WARN ( cur_string, Qurio_String::is_last_quote( cur_string ) );
+
+    if( !Qurio_String::is_last_quote( cur_string ) || ( is_char && !Qurio_String::is_valid_char( cur_string ) ) ) {
+
         try {
             std::string error_msg = "Invalid token, ";
             error_msg += cur_string;
@@ -232,6 +233,7 @@ void Qurio_Lexer::get_token_string_helper(
             col = cur_col;
             throw;
         }
+
     }
 
     auto * token = new Token_String { row, col,

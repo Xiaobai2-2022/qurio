@@ -25,14 +25,14 @@ bool Qurio_String::is_valid_number( const std::string & token ) {
 
 }
 
-bool Qurio_String::is_valid_char( const std::string & token )
-{
+bool Qurio_String::is_valid_char( const std::string & token ) {
+
     unsigned long length = token.size();
 
     if( token.at( 0 ) != '\'' || token.at( length - 1 ) != '\'' ) return false;
 
     if( token.size() == 3 ) {
-        if ( token.at( 1 ) != '\'' ) return true;
+        if ( token.at( 1 ) != '\'' && token.at( 1 ) != '\\' ) return true;
         return false;
     }
 
@@ -55,7 +55,7 @@ bool Qurio_String::is_valid_char( const std::string & token )
     }
 
     if( token.at( 2 ) == 'x' ) {
-        if( token.length() != 6 ) return false;
+        if( token.size() != 6 ) return false;
         if (
             (( token.at( 3 ) >= '0' && token.at( 3 ) <= '9' ) ||
             ( token.at( 3 ) >= 'a' && token.at( 3 ) <= 'f' ) ||
@@ -82,5 +82,25 @@ bool Qurio_String::is_valid_char( const std::string & token )
     }
 
     return false;
+
+}
+
+bool Qurio_String::is_last_quote( const std::string & token ) {
+
+    if( token.size() == 1 ) return false;
+
+    unsigned long last = token.size() - 1;
+
+    if( token.at( last ) != token.at( 0 ) ) return false;
+
+    unsigned long count = 0;
+
+    // check if still in range, and if the value is an escape;
+    while( last != 0 && token.at( last - 1 ) == '\\' ) {
+        ++count;
+        --last;
+    }
+
+    return !( count % 2 );
 
 }

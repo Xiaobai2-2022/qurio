@@ -24,6 +24,7 @@ include_directories(
             inc/constant
                 inc/constant/output_msg
             inc/entity
+                inc/entity/abstract_syntax_tree
                 inc/entity/parsed_object
                 inc/entity/parsed_object/lex_object
                 inc/entity/parsed_object/lex_object/concrete_lex_object
@@ -31,3 +32,8 @@ include_directories(
             inc/util
 
 )
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+endif()
+

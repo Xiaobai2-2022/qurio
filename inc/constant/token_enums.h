@@ -40,6 +40,8 @@ enum QURIO_Keyword {
     KEY_DATATYPE_INTEGER,                   // int
     KEY_DATATYPE_LONG_INTEGER,              // long
     KEY_DATATYPE_UNSIGNED,                  // unsigned
+
+    KEY_DATATYPE_VOID,                      // void
     KEY_DATATYPE_STRING,                    // string
 
 }; // enum QURIO_Keyword

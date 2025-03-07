@@ -4,6 +4,9 @@
 
 #pragma once
 
+#include "log_level.h"
+#include "log.h"
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -11,9 +14,8 @@
 
 #include "token_enums.h"
 
-#include "lexer_msg.h"
-
 #include "token_delimiter.h"
+#include "token_error.h"
 #include "token_identifier.h"
 #include "token_keyword.h"
 #include "token_number.h"
@@ -24,5 +26,7 @@
 
 #include "qurio_string.h"
 
-#include "log_level.h"
-#include "log.h"
+#include "lexer_msg.h"
+#include "qurio_lexer.h"
+
+#include "ast_node.h"

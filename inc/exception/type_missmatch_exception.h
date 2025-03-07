@@ -19,7 +19,7 @@ class Type_Missmatch_Exception final : public std::exception {
         const unsigned long _col;
 
     public:
-        explicit Type_Missmatch_Exception( const std::string &,
+        Type_Missmatch_Exception( const std::string &,
             const unsigned long &, const unsigned long & ) noexcept;
 
     public:

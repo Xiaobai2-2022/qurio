@@ -27,7 +27,7 @@ bool Qurio_String::is_valid_number( const std::string & token ) {
 
 bool Qurio_String::is_valid_char( const std::string & token ) {
 
-    unsigned long length = token.size();
+    const unsigned long length = token.size();
 
     if( token.at( 0 ) != '\'' || token.at( length - 1 ) != '\'' ) return false;
 

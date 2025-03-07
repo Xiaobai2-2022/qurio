@@ -4,11 +4,9 @@
 
 #include "main.h"
 
-#include <token_error.h>
-
-#include "qurio_lexer.h"
-
 int main() {
+
+
 
     const std::string f_name = "/home/xiaobai2-2025/proj-q/qurio/test/debug_test.qc";
 
@@ -16,7 +14,7 @@ int main() {
 
     Qurio_Lexer::tokenizer( f_name, tokens );
 
-    PRINT_DEBUG( tokens.size() );
+    PRINT_DEBUG( "Token Count:", tokens.size() );
 
     while( !tokens.empty() ) {
 

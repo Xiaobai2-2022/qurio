@@ -18,7 +18,6 @@ class Token_Delimiter final : public Token {
 
     public:
         [[nodiscard]] std::any get_value() const noexcept override;
-        // void set_value( const std::any & ) override;
 
     friend std::ostream & operator<<( std::ostream &, const Token_Delimiter & ) noexcept;
 

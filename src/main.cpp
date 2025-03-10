@@ -4,62 +4,39 @@
 
 #include "main.h"
 
-#include <token_error.h>
-
-#include "qurio_lexer.h"
-
 int main() {
 
-    const std::string f_name = "/home/xiaobai2-2025/proj-q/qurio/test/debug_test.qc";
+    const auto prog = new Token_Protocol{ 0, 0, PROGRAM };
 
-    std::queue< Token * >tokens;
+    auto head = new AST_Node{ prog };
 
-    Qurio_Lexer::tokenizer( f_name, tokens );
+    const auto func = new Token_Protocol{ 0, 0, FUNCTION };
+    const auto func_rtn = new Token_Protocol{ 0, 0, RETURN_TYPE };
+    const auto func_name = new Token_Protocol{ 0, 0, FUNCTION_NAME };
+    const auto func_args = new Token_Protocol{0, 0, ARGUMENT };
+    const auto func_body = new Token_Protocol{0, 0, SCOPE };
 
-    PRINT_DEBUG( tokens.size() );
+    const auto node_func = new AST_Node{ func };
+    const auto node_func_rtn = new AST_Node{ func_rtn };
+    const auto node_func_name = new AST_Node{ func_name };
+    const auto node_func_args = new AST_Node{ func_args };
+    const auto node_func_body = new AST_Node{ func_body };
 
-    while( !tokens.empty() ) {
+    head->set_child( node_func );
+    head->set_child( node_func_rtn );
+    head->set_child( node_func_name );
+    head->set_child( node_func_args );
+    head->set_child( node_func_body );
 
-        Token * token = tokens.front();
-        tokens.pop();
+    for(const auto it : *head) PRINT_DEBUG_IT( *it );
 
-        if( token->get_type() == ERROR_TYPE ) {
-            const auto * token_error = dynamic_cast< Token_Error * > ( token );
-            PRINT_ERROR( * token_error );
-        }
+    delete head;
 
-        if( token->get_type() == DELIMITER ) {
-            const auto * token_delimiter = dynamic_cast< Token_Delimiter * > ( token );
-            PRINT_DEBUG( * token_delimiter );
-        }
-
-        if( token->get_type() == KEYWORD ) {
-            const auto * token_keyword = dynamic_cast< Token_Keyword * > ( token );
-            PRINT_DEBUG( * token_keyword );
-        }
-
-        if( token->get_type() == IDENTIFIER ) {
-            const auto * token_identifier = dynamic_cast< Token_Identifier * > ( token );
-            PRINT_DEBUG( * token_identifier );
-        }
-
-        if( token->get_type() == NUMBER ) {
-            const auto * token_number = dynamic_cast< Token_Number * > ( token );
-            PRINT_DEBUG( * token_number );
-        }
-
-        if( token->get_type() == OPERATOR ) {
-            const auto * token_number = dynamic_cast< Token_Operator * > ( token );
-            PRINT_DEBUG( * token_number );
-        }
-
-        if( token->get_type() == STRING || token->get_type() == CHAR ) {
-            const auto * token_string = dynamic_cast< Token_String * > ( token );
-            PRINT_DEBUG( * token_string );
-        }
-
-        delete token;
-
-    }
+    delete prog;
+    delete func;
+    delete func_rtn;
+    delete func_name;
+    delete func_args;
+    delete func_body;
 
 } // main

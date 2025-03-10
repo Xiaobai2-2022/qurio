@@ -14,7 +14,7 @@ class File_Failure_Exception final : public std::exception {
         std::string _f_name;
 
     public:
-        explicit File_Failure_Exception( const std::string &, const std::string & ) noexcept;
+        File_Failure_Exception( const std::string &, const std::string & ) noexcept;
 
     public:
         [[nodiscard]] const char * what() const noexcept override;

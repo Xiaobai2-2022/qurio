@@ -41,9 +41,13 @@ void print_args( T first, Args... args ) {
 
 #undef PRINT_DEBUG
 
+#define PRINT_DEBUG_IT( it ) \
+std::cout << "\033[36m[DEBUG]:\t" << it << "\033[0m" << std::endl;
+
 #define PRINT_DEBUG( ... ) \
 std::cout << "\033[36m[DEBUG]:\t"; \
-print_args( __VA_ARGS__ );
+print_args( __VA_ARGS__ );\
+std::cout << "\033[0m";
 
 #define DEV
 
@@ -55,7 +59,8 @@ print_args( __VA_ARGS__ );
 
 #define PRINT_WARN( ... ) \
 std::cout << "\033[33m[WARNING]:\t"; \
-print_args( __VA_ARGS__ );
+print_args( __VA_ARGS__ );\
+std::cout << "\033[0m";
 
 #define PROD
 
@@ -68,11 +73,13 @@ print_args( __VA_ARGS__ );
 
 #define PRINT_ERROR( ... ) \
 std::cout << "\033[31m[ERROR]:\t"; \
-print_args( __VA_ARGS__ );
+print_args( __VA_ARGS__ );\
+std::cout << "\033[0m";
 
 #define PRINT_INFO( ... ) \
 std::cout << "\033[32m[INFO]:\t\t"; \
-print_args( __VA_ARGS__ );
+print_args( __VA_ARGS__ );\
+std::cout << "\033[0m";
 
 #endif
 
@@ -96,5 +103,8 @@ LOG( os, __VA_ARGS__ );
 #define LOG_DEBUG( os, ... ) \
 os << "[DEBUG]:\t"; \
 LOG( os, __VA_ARGS__ );
+
+#define LOG_DEBUG_IT( os, it ) \
+os << "[DEBUG]:\t" << it << std::endl;
 
 #endif

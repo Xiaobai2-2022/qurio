@@ -105,7 +105,6 @@ void Qurio_Lexer::get_token_helper(
             }
         else
             Qurio_Lexer::get_token_operator_helper( row, col, fs, cur_char, tokens );
-            LEXER_WARN( row, col );
     } else if( cur_char >= '0' && cur_char <= '9' ) {
         try {
             Qurio_Lexer::get_token_number_helper( row, col, fs, cur_char, tokens );
@@ -122,7 +121,7 @@ void Qurio_Lexer::get_token_delimiter_helper(
     const unsigned long & row, unsigned long & col,
     std::fstream & fs, char & cur_char, std::queue< Token * > & tokens ) {
 
-    auto * token = new Token_Delimiter { row, col, Token_List::delimiter_list[ cur_char ] };
+    const auto token = new Token_Delimiter { row, col, Token_List::delimiter_list[ cur_char ] };
     tokens.push( token );
 
     fs.get( cur_char );
@@ -148,7 +147,7 @@ void Qurio_Lexer::get_token_number_helper(
     }
 
     try {
-        auto * token = new Token_Number { row, col, cur_number };
+        const auto token = new Token_Number { row, col, cur_number };
         tokens.push( token );
     } catch( Type_Missmatch_Exception & tme ) {
         tokens.push( new Token_Error{ row, col, tme.what() } );
@@ -186,7 +185,6 @@ void Qurio_Lexer::get_token_operator_helper(
     // Check for comment
     if( opr == OPERATOR_COMMENT ) {
         while( !fs.eof() && cur_char != '\n' ) fs.get( cur_char );
-        LEXER_WARN( row, col );
         return;
     }
     if( opr == OPERATOR_COMMENT_LONG_OPENING ) {
@@ -208,7 +206,7 @@ void Qurio_Lexer::get_token_operator_helper(
         }
     }
 
-    auto * token = new Token_Operator { row, col, Token_List::operator_list[ cur_operator ] };
+    const auto token = new Token_Operator { row, col, Token_List::operator_list[ cur_operator ] };
     tokens.push( token );
 
     col = cur_col;
@@ -268,7 +266,7 @@ void Qurio_Lexer::get_token_string_helper(
 
     Qurio_String::is_valid_string( cur_string );
 
-    auto * token = new Token_String { row, col,
+    const auto token = new Token_String { row, col,
         (is_char ? CHAR : STRING), cur_string };
     tokens.push( token );
 
@@ -297,11 +295,11 @@ void Qurio_Lexer::get_token_identifier_helper(
         );
 
     if( Token_List::keyword_list.contains( cur_string ) ) {
-        auto * token = new Token_Keyword { row, col,
+        const auto token = new Token_Keyword { row, col,
             Token_List::keyword_list[ cur_string ] };
         tokens.push( token );
     } else {
-        auto * token = new Token_Identifier { row, col,
+        const auto token = new Token_Identifier { row, col,
             cur_string };
         tokens.push( token );
     }

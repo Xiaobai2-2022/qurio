@@ -7,6 +7,7 @@
 enum Parsed_Lex_Type {
 
     ERROR_TYPE,
+
     DELIMITER,
     IDENTIFIER,
     KEYWORD,
@@ -14,6 +15,8 @@ enum Parsed_Lex_Type {
     OPERATOR,
     STRING,
     CHAR,
+
+    PROTOCOL,
 
 }; // enum Parsed_Lex_Type
 
@@ -125,3 +128,51 @@ enum QURIO_Operator {
     OPERATOR_BACKTICK,                          // `
 
 }; // enum QURIO_Symbol
+
+enum QURIO_Protocol {
+
+    // No operation
+    NOP,
+
+    // Program
+    PROGRAM,
+
+    // Scope
+    SCOPE,
+
+    // Function
+    FUNCTION,
+    RETURN_TYPE,
+    FUNCTION_NAME,
+    ARGUMENT,
+
+    // Expression
+    EXPRS,
+    EXPR,
+    EXPR_INLINE,
+
+    CONDITIONS,
+
+    // if else
+    IF,
+    ELSE,
+
+    // while
+    WHILE,
+
+    // do while
+    DO,
+
+    // for
+    FOR,
+    PRE_OPERATION,
+    POST_OPERATION,
+
+    // switch case
+    SWITCH,
+    SWITCH_IDENTIFIER,
+    CASE,
+    CASE_VALUE,
+    DEFAULT,
+
+}; // enum QURIO_Protocol

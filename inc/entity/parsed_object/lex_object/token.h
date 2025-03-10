@@ -26,6 +26,9 @@ class Token : public Parsed_Object {
     public:
         [[nodiscard]] virtual std::any get_value() const noexcept = 0;
 
+    public:
+        static void print_token( std::ostream & os, Token * );
+
     friend std::ostream & operator<<( std::ostream &, const Token & ) noexcept;
 
 }; // class Token <- Abstract

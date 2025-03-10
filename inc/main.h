@@ -19,8 +19,9 @@
 #include "token_identifier.h"
 #include "token_keyword.h"
 #include "token_number.h"
-#include "token_string.h"
 #include "token_operator.h"
+#include "token_protocol.h"
+#include "token_string.h"
 
 #include "type_missmatch_exception.h"
 

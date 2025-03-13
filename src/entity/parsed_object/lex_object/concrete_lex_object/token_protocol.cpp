@@ -14,7 +14,7 @@ std::any Token_Protocol::get_value() const noexcept {
 
 std::ostream & operator<<( std::ostream & os, const Token_Protocol & token_protocol ) noexcept {
     const Token & base = token_protocol;
-    os << "Token Delimiter: { Type: " << token_protocol._type <<
+    os << "Token Protocol: { Type: " << token_protocol._type <<
         ", Value: " << token_protocol._value << " } is a: " << base;
     return os;
 }

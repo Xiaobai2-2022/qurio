@@ -16,11 +16,11 @@ AST_Node::~AST_Node() noexcept {
     delete this->_first_child;
     delete this->_next;
 
-    this->_cur = nullptr;
+    delete this->_cur;
 
 }
 
-Token * AST_Node::operator*() const noexcept {
+Token * AST_Node::get_token() const noexcept {
     return this->_cur;
 }
 
@@ -49,6 +49,32 @@ void AST_Node::set_child( AST_Node * child ) noexcept {
     }
 
     this->_first_child->set_next( child );
+
+}
+
+AST_Node * AST_Node::get_next() const noexcept {
+    return this->_next;
+}
+
+AST_Node * AST_Node::get_child() const noexcept {
+    return this->_first_child;
+}
+
+// unlink the current node and return parent
+AST_Node * AST_Node::unlink_this() noexcept {
+
+    AST_Node * parent = this->_parent;
+
+    if( this->_prev ) {
+        this->_prev->_next = nullptr;
+    } else if( this->_parent ) {
+        this->_parent->_first_child = nullptr;
+    }
+
+    this->_prev = nullptr;
+    this->_parent = nullptr;
+
+    return parent;
 
 }
 
@@ -103,6 +129,9 @@ AST_Node::PreorderIterator AST_Node::end() {
 }
 
 std::ostream & operator<<( std::ostream& os, const AST_Node & node ) noexcept {
+    if( node._next ) node._next->_level = node._level;
+    if( node._first_child ) node._first_child->_level = node._level + 1;
+    os << "Level: " << node._level << "\t";
     for( unsigned long i{0}; i < node._level; ++i ) os << '\t';
     Token::print_token( os, node._cur );
     return os;

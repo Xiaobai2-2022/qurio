@@ -23,4 +23,8 @@ class Token_List {
         static std::unordered_map< std::string, QURIO_Operator > operator_list;
         static std::unordered_map< std::string, QURIO_Keyword > keyword_list;
 
+    public:
+        static std::unordered_map< QURIO_Keyword, QURIO_BUILT_IN_Type > keyword_to_built_in_type;
+        static std::unordered_set< std::string > user_defined_type;
+
 }; // class Token_List <- static

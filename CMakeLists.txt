@@ -21,6 +21,7 @@ include_directories(
         inc
             inc/compiler
                 inc/compiler/lexer
+                inc/compiler/parser
             inc/constant
                 inc/constant/output_msg
             inc/entity

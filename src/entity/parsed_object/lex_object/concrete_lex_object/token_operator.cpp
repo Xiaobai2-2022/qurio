@@ -7,8 +7,8 @@
 #include "type_missmatch_exception.h"
 
 Token_Operator::Token_Operator( const unsigned long & row, const unsigned long & col,
-    const QURIO_Operator & value) noexcept :
-    Token{ row, col, OPERATOR }, _value{ value } {}
+    const QURIO_Operator & value, std::string str_val ) noexcept :
+    Token{ row, col, OPERATOR, std::move( str_val ) }, _value{ value } {}
 
 std::any Token_Operator::get_value() const noexcept {
     return this->_value;

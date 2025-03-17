@@ -5,8 +5,8 @@
 #include "token_error.h"
 
 Token_Error::Token_Error( const unsigned long & row, const unsigned long & col,
-    const std::string & value) noexcept :
-    Token{ row, col, ERROR_TYPE }, _value{ value } {}
+    const std::string & value, std::string str_val ) noexcept :
+    Token{ row, col, ERROR_TYPE, std::move( str_val ) }, _value{ value } {}
 
 std::any Token_Error::get_value() const noexcept {
     return this->_value;

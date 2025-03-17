@@ -9,8 +9,8 @@
 #include "qurio_string.h"
 
 Token_Number::Token_Number( const unsigned long & row, const unsigned long & col,
-    const std::string & value) :
-    Token{ row, col, NUMBER }, _value{ value } {
+    const std::string & value, std::string str_val ) :
+    Token{ row, col, NUMBER, std::move( str_val ) }, _value{ value } {
 
     if ( !Qurio_String::is_valid_number( value ) ) {
         PRINT_ERROR(

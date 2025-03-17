@@ -7,8 +7,8 @@
 #include "type_missmatch_exception.h"
 
 Token_Keyword::Token_Keyword( const unsigned long & row, const unsigned long & col,
-    const QURIO_Keyword & value) noexcept :
-    Token{ row, col, KEYWORD }, _value{ value } {}
+    const QURIO_Keyword & value, std::string str_val ) noexcept :
+    Token{ row, col, KEYWORD, std::move( str_val ) }, _value{ value } {}
 
 std::any Token_Keyword::get_value() const noexcept {
     return this->_value;

@@ -13,7 +13,7 @@ private:
 
 public:
     Token_String( const unsigned long &, const unsigned long &,
-        const Parsed_Lex_Type &, const std::string & ) noexcept;
+        const Parsed_Lex_Type &, const std::string &, std::string ) noexcept;
     ~Token_String() noexcept override = default;
 
 public:

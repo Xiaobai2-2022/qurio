@@ -5,8 +5,8 @@
 #include "token_string.h"
 
 Token_String::Token_String( const unsigned long & row, const unsigned long & col,
-    const Parsed_Lex_Type & type, const std::string & value) noexcept :
-    Token{ row, col, type }, _value{ value } {}
+    const Parsed_Lex_Type & type, const std::string & value, std::string str_val ) noexcept :
+    Token{ row, col, type, std::move( str_val ) }, _value{ value } {}
 
 std::any Token_String::get_value() const noexcept {
     return this->_value;

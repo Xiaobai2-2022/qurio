@@ -161,4 +161,7 @@ std::unordered_map< QURIO_Keyword, QURIO_BUILT_IN_Type > Token_List::keyword_to_
 
 };
 
-std::unordered_set< std::string > Token_List::user_defined_type = {};
+std::unordered_set< std::string > Token_List::user_defined_type_set = {};
+std::unordered_set< std::string > Token_List::function_decl_set = {};
+std::unordered_set< std::string > Token_List::function_def_set = {};
+std::unordered_set< std::string > Token_List::var_name_set = {};

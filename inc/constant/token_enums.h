@@ -133,17 +133,20 @@ enum QURIO_Operator {
 
 enum QURIO_Protocol {
 
-    // No operation
-    NOP,
-
     // Program
     PROGRAM,
 
-    // Scope
+    TYPE,
+    NAME,
+
+    // Scop
     SCOPE,
+
+    DECL_DEF,
 
     // Function
     FUNCTION,
+    FUNCTION_DECL,
     RETURN_TYPE,
     FUNCTION_NAME,
     ARGUMENT,
@@ -176,6 +179,11 @@ enum QURIO_Protocol {
     CASE,
     CASE_VALUE,
     DEFAULT,
+
+    ARRAY,
+
+    VARIABLE_DECL,
+    ARRAY_DECL,
 
 }; // enum QURIO_Protocol
 

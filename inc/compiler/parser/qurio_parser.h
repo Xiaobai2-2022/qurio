@@ -4,14 +4,9 @@
 
 #pragma once
 
-#include <queue>
-
 #include "ast_node.h"
 
-#include "token_list.h"
-
-#include "token.h"
-#include "token_identifier.h"
+#include <queue>
 
 class Qurio_Parser {
 
@@ -19,5 +14,7 @@ class Qurio_Parser {
         Qurio_Parser() = delete;
 
     public:
+        static AST_Node * form_tree( std::queue< Token * > & tokens );
+        static void parse_fun_global_var( AST_Node * );
 
 }; // class Qurio_Parser <- static

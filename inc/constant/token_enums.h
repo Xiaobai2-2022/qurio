@@ -136,53 +136,7 @@ enum QURIO_Protocol {
     // Program
     PROGRAM,
 
-    TYPE,
-    NAME,
-
-    // Scop
-    SCOPE,
-
-    DECL_DEF,
-
-    // Function
-    FUNCTION,
-    FUNCTION_DECL,
-    FUNCTION_NAME,
-    ARGUMENT,
-
-    // Expression
-    EXPRS,
-    EXPR,
-    EXPR_INLINE,
-
-    CONDITIONS,
-
-    // if else
-    IF,
-    ELSE,
-
-    // while
-    WHILE,
-
-    // do while
-    DO,
-
-    // for
-    FOR,
-    PRE_OPERATION,
-    POST_OPERATION,
-
-    // switch case
-    SWITCH,
-    SWITCH_IDENTIFIER,
-    CASE,
-    CASE_VALUE,
-    DEFAULT,
-
-    ARRAY,
-
-    VARIABLE_DECL,
-    ARRAY_DECL,
+    DEV_DEF,
 
 }; // enum QURIO_Protocol
 

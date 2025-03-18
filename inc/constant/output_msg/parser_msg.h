@@ -25,7 +25,9 @@
 #define SCAN_TYPE "Reading a type at"
 #define SCAN_IDENTIFIER "Reading an identifier at"
 
-#define SYNTAX_ERROR_MISSING "Syntax error, missing token"
+#define SYNTAX_ERROR_MISSING( token, row, col )\
+    ("Syntax error, missing token: \"" + token + "\" at { "\
+    + std::to_string( row ) + ", " + std::to_string( col ) + " }.")
 #define SYNTAX_ERROR_UNEXPECTED( token, row, col )\
     ("Syntax error, unexpected token: \"" + token + "\" at { "\
     + std::to_string( row ) + ", " + std::to_string( col ) + " }.")

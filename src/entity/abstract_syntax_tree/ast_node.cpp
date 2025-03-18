@@ -78,6 +78,15 @@ AST_Node * AST_Node::unlink_this() noexcept {
 
 }
 
+void AST_Node::fix_up() noexcept {
+
+    if( this->_next ) this->_next->_level = this->_level;
+    if( this->_next ) this->_next->_parent = this->_parent;
+    if( this->_first_child ) this->_first_child->_parent = this;
+
+}
+
+
 AST_Node::PreorderIterator::PreorderIterator( AST_Node * cur_node ) noexcept :
     _cur_node{ cur_node } {}
 
@@ -128,8 +137,8 @@ AST_Node::PreorderIterator AST_Node::end() {
     return PreorderIterator{ nullptr };
 }
 
-std::ostream & operator<<( std::ostream& os, const AST_Node & node ) noexcept {
-    if( node._next ) node._next->_level = node._level;
+std::ostream & operator<<( std::ostream& os, AST_Node & node ) noexcept {
+    node.fix_up();
     if( node._first_child ) node._first_child->_level = node._level + 1;
     os << "Level: " << node._level << "\t";
     for( unsigned long i{0}; i < node._level; ++i ) os << '\t';

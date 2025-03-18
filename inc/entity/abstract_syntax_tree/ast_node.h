@@ -35,6 +35,7 @@ class AST_Node final {
         [[nodiscard]] AST_Node * get_child() const noexcept;
 
         AST_Node * unlink_this() noexcept;
+        void fix_up() noexcept;
 
     public:
 
@@ -59,6 +60,6 @@ class AST_Node final {
         PreorderIterator begin();
         PreorderIterator end();
 
-    friend std::ostream & operator<<( std::ostream & os, const AST_Node & node ) noexcept;
+    friend std::ostream & operator<<( std::ostream & os, AST_Node & node ) noexcept;
 
 };

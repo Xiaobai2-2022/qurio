@@ -10,11 +10,6 @@ int main() {
 
     Qurio_Lexer::tokenizer( "/home/xiaobai2-2025/proj-q/qurio/test/debug_test.qc", tokens );
 
-    const std::string user_defined_type = "x";
-    const auto udt = new Token_Identifier{ 0, 0, user_defined_type, user_defined_type };
-
-    Token_List::user_defined_type_map.emplace( user_defined_type, udt );
-
     const auto program = Qurio_Parser::form_tree( tokens );
 
     // for(const auto it : * program) PRINT_DEBUG_IT( *it );
@@ -54,10 +49,14 @@ int main() {
     //     return -1;
     // }
 
-    if( program ) for( const auto it : * program ) PRINT_DEBUG_IT( *it );
+    auto first_child = program->get_child();
+
+    Qurio_Parser::parse_fun_global_var( first_child );
+
+    if( program )
+        for( const auto it : * program )
+            PRINT_DEBUG_IT( *it );
 
     delete program;
-
-    delete udt;
 
 } // main

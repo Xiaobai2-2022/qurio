@@ -25,11 +25,16 @@ class AST_Node final {
         ~AST_Node() noexcept;
 
     public:
-        [[nodiscard]] Token * operator*() const noexcept;
+        [[nodiscard]] Token * get_token() const noexcept;
 
     public:
         void set_next( AST_Node * ) noexcept;
         void set_child( AST_Node * ) noexcept;
+
+        [[nodiscard]] AST_Node * get_next() const noexcept;
+        [[nodiscard]] AST_Node * get_child() const noexcept;
+
+        AST_Node * unlink_this() noexcept;
 
     public:
 

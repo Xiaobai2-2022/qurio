@@ -4,11 +4,13 @@
 
 #include "token_delimiter.h"
 
+#include <utility>
+
 #include "type_missmatch_exception.h"
 
 Token_Delimiter::Token_Delimiter( const unsigned long & row, const unsigned long & col,
-    const QURIO_Delimiter & value) noexcept :
-    Token{ row, col, DELIMITER }, _value{ value } {}
+    const QURIO_Delimiter & value, std::string str_val ) noexcept :
+    Token{ row, col, DELIMITER, std::move( str_val ) }, _value{ value } {}
 
 std::any Token_Delimiter::get_value() const noexcept {
     return this->_value;

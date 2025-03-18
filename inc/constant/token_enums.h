@@ -35,6 +35,8 @@ enum QURIO_Keyword {
     KEY_CONTROL_RETURN,                     // return
 
     // datatypes
+    KEY_DATATYPE_CONSTANT,                  // const
+
     KEY_DATATYPE_ANY,                       // any
     KEY_DATATYPE_BOOLEAN,                   // boolean
     KEY_DATATYPE_CHARACTER,                 // char
@@ -131,18 +133,20 @@ enum QURIO_Operator {
 
 enum QURIO_Protocol {
 
-    // No operation
-    NOP,
-
     // Program
     PROGRAM,
 
-    // Scope
+    TYPE,
+    NAME,
+
+    // Scop
     SCOPE,
+
+    DECL_DEF,
 
     // Function
     FUNCTION,
-    RETURN_TYPE,
+    FUNCTION_DECL,
     FUNCTION_NAME,
     ARGUMENT,
 
@@ -175,4 +179,25 @@ enum QURIO_Protocol {
     CASE_VALUE,
     DEFAULT,
 
+    ARRAY,
+
+    VARIABLE_DECL,
+    ARRAY_DECL,
+
 }; // enum QURIO_Protocol
+
+enum QURIO_BUILT_IN_Type {
+
+    KEY_BUILT_IN_TYPE_VOID,
+
+    KEY_BUILT_IN_TYPE_ANY,                       // any
+    KEY_BUILT_IN_TYPE_BOOLEAN,                   // boolean
+    KEY_BUILT_IN_TYPE_CHARACTER,                 // char
+    KEY_BUILT_IN_TYPE_DOUBLE_FLOAT,              // double
+    KEY_BUILT_IN_TYPE_FLOAT,                     // float
+    KEY_BUILT_IN_TYPE_INTEGER,                   // int
+    KEY_BUILT_IN_TYPE_LONG_INTEGER,              // long
+
+    KEY_BUILT_IN_TYPE_STRING,                    // string
+
+}; // enum QURIO_BUILT_IN_Type

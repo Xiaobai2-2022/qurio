@@ -13,7 +13,7 @@ private:
 
 public:
     Token_Error( const unsigned long &, const unsigned long &,
-        const std::string & ) noexcept;
+        const std::string &, std::string ) noexcept;
     ~Token_Error() noexcept override = default;
 
 public:

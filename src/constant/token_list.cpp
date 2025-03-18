@@ -143,6 +143,25 @@ std::unordered_map< std::string, QURIO_Keyword > Token_List::keyword_list = {
     { "int", KEY_DATATYPE_INTEGER },
     { "long", KEY_DATATYPE_LONG_INTEGER },
     { "unsigned", KEY_DATATYPE_UNSIGNED },
+    { "void", KEY_DATATYPE_VOID},
     { "string", KEY_DATATYPE_STRING },
 
 };
+
+std::unordered_map< QURIO_Keyword, QURIO_BUILT_IN_Type > Token_List::keyword_to_built_in_type = {
+
+    { KEY_DATATYPE_VOID, KEY_BUILT_IN_TYPE_VOID },
+    { KEY_DATATYPE_BOOLEAN, KEY_BUILT_IN_TYPE_VOID },
+    { KEY_DATATYPE_CHARACTER, KEY_BUILT_IN_TYPE_VOID },
+    { KEY_DATATYPE_DOUBLE_FLOAT, KEY_BUILT_IN_TYPE_VOID },
+    { KEY_DATATYPE_FLOAT, KEY_BUILT_IN_TYPE_VOID },
+    { KEY_DATATYPE_INTEGER, KEY_BUILT_IN_TYPE_VOID },
+    { KEY_DATATYPE_LONG_INTEGER, KEY_BUILT_IN_TYPE_VOID },
+    { KEY_DATATYPE_STRING, KEY_BUILT_IN_TYPE_VOID },
+
+};
+
+std::unordered_map< std::string, Token * > Token_List::user_defined_type_map = {};
+std::unordered_map< std::string, Token * > Token_List::function_decl_map = {};
+std::unordered_map< std::string, Token * > Token_List::function_def_map = {};
+std::unordered_map< std::string, Token * > Token_List::var_name_map = {};

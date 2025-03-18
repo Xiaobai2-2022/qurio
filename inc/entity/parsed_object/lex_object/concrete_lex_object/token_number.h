@@ -13,7 +13,7 @@ class Token_Number final : public Token {
 
     public:
         Token_Number( const unsigned long &, const unsigned long &,
-            const std::string & );
+            const std::string &, std::string );
         ~Token_Number() noexcept override = default;
 
     public:

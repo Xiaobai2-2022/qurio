@@ -4,15 +4,15 @@
 
 #include "qurio_lexer.h"
 
-#include <qurio_string.h>
-#include <token_error.h>
-#include <token_keyword.h>
-#include <token_operator.h>
-#include <token_string.h>
+#include "qurio_string.h"
 
 #include "token_delimiter.h"
+#include "token_error.h"
 #include "token_identifier.h"
+#include "token_keyword.h"
 #include "token_number.h"
+#include "token_operator.h"
+#include "token_string.h"
 
 #include "file_failure_exception.h"
 #include "lexer_msg.h"
@@ -121,7 +121,7 @@ void Qurio_Lexer::get_token_delimiter_helper(
     const unsigned long & row, unsigned long & col,
     std::fstream & fs, char & cur_char, std::queue< Token * > & tokens ) {
 
-    const auto token = new Token_Delimiter { row, col, Token_List::delimiter_list[ cur_char ] };
+    const auto token = new Token_Delimiter { row, col, Token_List::delimiter_list[ cur_char ], std::string{ 1, cur_char } };
     tokens.push( token );
 
     fs.get( cur_char );
@@ -147,10 +147,10 @@ void Qurio_Lexer::get_token_number_helper(
     }
 
     try {
-        const auto token = new Token_Number { row, col, cur_number };
+        const auto token = new Token_Number { row, col, cur_number, cur_number };
         tokens.push( token );
     } catch( Type_Missmatch_Exception & tme ) {
-        tokens.push( new Token_Error{ row, col, tme.what() } );
+        tokens.push( new Token_Error{ row, col, tme.what(), cur_number } );
         LEXER_ERROR( LEXER_RETHROW, tme.what(), "at Qurio_Lexer::get_token_number_helper." );
         col = cur_col;
         throw;
@@ -206,7 +206,7 @@ void Qurio_Lexer::get_token_operator_helper(
         }
     }
 
-    const auto token = new Token_Operator { row, col, Token_List::operator_list[ cur_operator ] };
+    const auto token = new Token_Operator { row, col, Token_List::operator_list[ cur_operator ], cur_operator };
     tokens.push( token );
 
     col = cur_col;
@@ -256,7 +256,7 @@ void Qurio_Lexer::get_token_string_helper(
                 col
             };
         } catch ( Type_Missmatch_Exception & tme ) {
-            tokens.push( new Token_Error{ row, col, tme.what() } );
+            tokens.push( new Token_Error{ row, col, tme.what(), cur_string } );
             LEXER_ERROR( LEXER_THROW, tme.what(), "at Qurio_Lexer::get_token_string_helper." );
             col = cur_col;
             throw;
@@ -267,7 +267,7 @@ void Qurio_Lexer::get_token_string_helper(
     Qurio_String::is_valid_string( cur_string );
 
     const auto token = new Token_String { row, col,
-        (is_char ? CHAR : STRING), cur_string };
+        (is_char ? CHAR : STRING), cur_string, cur_string };
     tokens.push( token );
 
     col = cur_col;
@@ -296,11 +296,11 @@ void Qurio_Lexer::get_token_identifier_helper(
 
     if( Token_List::keyword_list.contains( cur_string ) ) {
         const auto token = new Token_Keyword { row, col,
-            Token_List::keyword_list[ cur_string ] };
+            Token_List::keyword_list[ cur_string ], cur_string };
         tokens.push( token );
     } else {
         const auto token = new Token_Identifier { row, col,
-            cur_string };
+            cur_string, cur_string };
         tokens.push( token );
     }
 

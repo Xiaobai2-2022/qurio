@@ -1,3 +1,5 @@
+int test;
+
 int main ( int, string );
 unsigned int test_method ( unsigned int, unsigned int );
 

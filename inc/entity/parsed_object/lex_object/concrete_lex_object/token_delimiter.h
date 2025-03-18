@@ -13,7 +13,7 @@ class Token_Delimiter final : public Token {
 
     public:
         Token_Delimiter( const unsigned long &, const unsigned long &,
-            const QURIO_Delimiter & ) noexcept;
+            const QURIO_Delimiter &, std::string ) noexcept;
         ~Token_Delimiter() noexcept override = default;
 
     public:

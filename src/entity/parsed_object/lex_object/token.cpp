@@ -6,6 +6,8 @@
 
 #include <log.h>
 
+#include <utility>
+
 #include "token_delimiter.h"
 #include "token_error.h"
 #include "token_identifier.h"
@@ -15,8 +17,9 @@
 #include "token_protocol.h"
 #include "token_string.h"
 
-Token::Token( const unsigned long & row, const unsigned long & col, const Parsed_Lex_Type & type ) noexcept
-    : Parsed_Object{ row, col }, _type{ type } {}
+Token::Token( const unsigned long & row, const unsigned long & col,
+    const Parsed_Lex_Type & type, std::string str_val ) noexcept
+    : Parsed_Object{ row, col }, _type{ type }, _str_val{ std::move( str_val ) } {}
 
 Parsed_Lex_Type Token::get_type() const noexcept {
     return this->_type;
@@ -24,6 +27,10 @@ Parsed_Lex_Type Token::get_type() const noexcept {
 
 void Token::set_type( const Parsed_Lex_Type & type ) noexcept {
     this->_type = type;
+}
+
+std::string Token::to_string() const noexcept {
+    return this->_str_val;
 }
 
 void Token::print_token( std::ostream & os, Token * token ) {
@@ -73,6 +80,6 @@ void Token::print_token( std::ostream & os, Token * token ) {
 
 std::ostream & operator<<( std::ostream & os, const Token & token ) noexcept {
     const Parsed_Object & base = token;
-    os << "Token is a: " << base;
+    os << "Token: { String Value: \"" << token._str_val  << "\" } is a: " << base;
     return os;
 }

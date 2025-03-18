@@ -147,7 +147,6 @@ enum QURIO_Protocol {
     // Function
     FUNCTION,
     FUNCTION_DECL,
-    RETURN_TYPE,
     FUNCTION_NAME,
     ARGUMENT,
 

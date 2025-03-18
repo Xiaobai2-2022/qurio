@@ -23,12 +23,16 @@
 #define TREE_GEN "Parser Tree Generated"
 
 #define SCAN_TYPE "Reading a type at"
+#define SCAN_IDENTIFIER "Reading an identifier at"
 
 #define SYNTAX_ERROR_MISSING "Syntax error, missing token"
-#define SYNTAX_ERROR_UNEXPECTED "Syntax error, unexpected token"
+#define SYNTAX_ERROR_UNEXPECTED( token, row, col )\
+    ("Syntax error, unexpected token: \"" + token + "\" at { "\
+    + std::to_string( row ) + ", " + std::to_string( col ) + " }.")
+#define SYNTAX_ERROR_REDEFINE( token, row, col, org_row, org_col )\
+    ("Syntax error, redefined identifier: \"" + token + "\" at { "\
+    + std::to_string( row ) + ", " + std::to_string( col ) + " }, first defined at { "\
+    + std::to_string( org_row ) + ", " + std::to_string( org_col ) + " }")
 
-#define COMPILE_TIME_ERROR( row, col )\
-    ("Compile Time Error At " + std::to_string( row ) \
-    + ", " + std::to_string( col ) + ".")
 
 
